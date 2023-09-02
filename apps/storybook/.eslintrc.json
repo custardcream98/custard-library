@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "custom/react",
+    "custom",
+    "plugin:storybook/recommended"
+  ],
+  "root": true
+}

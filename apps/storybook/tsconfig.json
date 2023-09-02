@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "@custardcream/*": ["../../packages/*/src"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

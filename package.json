@@ -18,7 +18,8 @@
     "lint:web:fix": "pnpm lint:fix ./apps/web",
     "lint:web:debug": "pnpm lint:debug ./apps/web",
     "build": "rm -rf packages/*/dist && rollup -c --bundleConfigAsCjs",
-    "publish:react-gantt": "pnpm run build && pnpm --filter react-gantt publish --report-summary"
+    "publish:react-gantt": "pnpm run build && pnpm --filter react-gantt publish --report-summary",
+    "storybook": "pnpm --filter ./apps/storybook storybook"
   },
   "keywords": [],
   "author": "shiwoo.park <custardcream@kakao.com>",
