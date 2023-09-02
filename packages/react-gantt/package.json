@@ -1,0 +1,39 @@
+{
+  "author": "shiwoo.park <custardcream@kakao.com>",
+  "name": "@custardcream/react-gantt",
+  "version": "0.0.0",
+  "bugs": {
+    "url": "https://github.com/custardcream98/custard-library/issues"
+  },
+  "description": "React Gantt Chart",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/custardcream98/custard-library.git"
+  },
+  "keywords": [
+    "react",
+    "gantt",
+    "chart"
+  ],
+  "homepage": "https://shiwoo.dev",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {},
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

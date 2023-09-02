@@ -1,0 +1,15 @@
+.DS_Store
+
+node_modules
+.vscode
+
+yarn.lock
+yarn.error.log
+
+.eslintrc.js
+.gitignore
+.npmignore
+.npmrc
+prettier.config.js
+rollup.config.mjs
+tsconfig.json
