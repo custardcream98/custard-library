@@ -31,6 +31,7 @@ const getRollupConfig = (packageFolderName) => {
           dir: path.resolve(packagePath, main),
           format: "cjs",
           sourcemap: true,
+          preserveModules: true,
         },
         {
           dir: path.resolve(packagePath, module),
