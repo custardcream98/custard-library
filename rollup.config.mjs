@@ -32,11 +32,13 @@ const getRollupConfig = (packageFolderName) => {
           format: "cjs",
           sourcemap: true,
           preserveModules: true,
+          exports: "named",
         },
         {
           dir: path.resolve(packagePath, module),
           format: "esm",
           sourcemap: true,
+          exports: "named",
         },
       ],
       external: [...Object.keys(packageJson.peerDependencies || {})],
