@@ -56,3 +56,5 @@ array extends는 추가된지 얼마 되지 않은 기능입니다. Storybook이
 `esbuild-register`는 마지막 publish가 22년 12월인 것으로 보아 근시일 내에 이 상황이 바뀌지는 않을 것 같습니다.
 
 if문 하나 있고 없고 차이만 고치면 되는걸 패키지끼리 의존성으로 인해 해결하지 못하는겁니다. 이 경험으로 dependency를 추가할 때는 신중해야겠다는 생각을 하게 됐습니다.
+
+> 똑같은 문제가 `eslint-plugin-import`에서도 발생했는데 이쪽은 dependency로 가지고 있어서 `resolutions` 프로퍼티 수정으로 해결이 가능했습니다.
