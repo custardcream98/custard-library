@@ -22,7 +22,8 @@
     "lint:base": "eslint --ext .ts,.tsx,.js,.jsx .",
     "lint:fix": "pnpm lint:base --fix",
     "lint:debug": "pnpm lint:base --debug",
-    "lint": "pnpm lint:base"
+    "lint:style": "stylelint .",
+    "lint": "pnpm lint:base && pnpm lint:style"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

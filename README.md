@@ -9,7 +9,7 @@
 ### `packages`
 
 - `eslint-config-custom`: 커스텀 ESLint 룰을 모아둡니다. `base.js`, `react.js` 등으로 분리해 관리합니다. 사용하는 측에서는 devDependency로 추가하고 ESLint config에서 extend하면 됩니다. ([예시](./packages/react-gantt/.eslintrc.json)) 패키지마다 조금씩 다른 설정을 할 수 있도록 이렇게 관리하기로 했습니다.
-- `react-gantt`: 간트 차트 라이브러리입니다.
+- `react-gantt`: 간트 차트 라이브러리입니다. `stylelint` 관련 설정이 추가됩니다.
 
 ### `apps`
 
