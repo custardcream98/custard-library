@@ -23,7 +23,8 @@
     "lint:fix": "pnpm lint:base --fix",
     "lint:debug": "pnpm lint:base --debug",
     "lint:style": "stylelint .",
-    "lint": "pnpm lint:base && pnpm lint:style"
+    "lint": "pnpm lint:base && pnpm lint:style",
+    "pre-commit": "lint-staged"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -41,5 +42,9 @@
     "eslint-config-custom": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": "pnpm lint:fix",
+    "src/**/*.{css,scss}": "pnpm lint:style --fix"
   }
 }

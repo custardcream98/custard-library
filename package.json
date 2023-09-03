@@ -9,9 +9,11 @@
   "scripts": {
     "dev": "pnpm --filter web dev",
     "build": "rm -rf packages/*/dist && rollup -c --bundleConfigAsCjs",
-    "build:watch": "rm -rf packages/*/dist && rollup -c --bundleConfigAsCjs --watch",
+    "build:watch": "pnpm build --watch",
     "publish:react-gantt": "pnpm run build && pnpm --filter react-gantt publish --report-summary",
-    "storybook": "NODE_ENV=development concurrently \"pnpm build:watch\" \"pnpm --filter ./apps/storybook storybook\""
+    "storybook": "NODE_ENV=development concurrently \"pnpm build:watch\" \"pnpm --filter ./apps/storybook storybook\"",
+    "prepare": "husky install",
+    "pre-commit": "pnpm --filter \"@custardcream/*\" pre-commit"
   },
   "keywords": [],
   "author": "shiwoo.park <custardcream@kakao.com>",
@@ -40,6 +42,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
     "pnpm": "^8.6.12",
     "prettier": "^3.0.3",
     "rollup": "^3.28.1",
@@ -47,7 +51,9 @@
     "rollup-plugin-styles": "^4.0.0",
     "sass": "^1.66.1",
     "stylelint": "^15.10.3",
+    "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard-scss": "^10.0.0",
+    "stylelint-prettier": "^4.0.2",
     "typescript": "^5.2.2",
     "typescript-plugin-css-modules": "^5.0.1"
   },
