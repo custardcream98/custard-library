@@ -1,4 +1,13 @@
 {
-  "extends": "stylelint-config-standard-scss",
+  "extends": [
+    "stylelint-config-prettier",
+    "stylelint-config-recommended",
+    "stylelint-config-concentric-order",
+    "stylelint-config-standard-scss"
+  ],
+  "plugins": ["stylelint-prettier"],
+  "rules": {
+    "prettier/prettier": true
+  },
   "ignoreFiles": ["**/*.{js,jsx,ts,tsx,json,html,md}", "**/node_modules/**/*", "**/dist/**/*"]
 }
