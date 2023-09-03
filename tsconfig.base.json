@@ -1,13 +1,5 @@
 {
   "compilerOptions": {
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules",
-        "options": {
-          "goToDefinition": true
-        }
-      }
-    ],
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "preserve",

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "goToDefinition": true
+        }
+      }
+    ]
+  }
+}
