@@ -8,15 +8,6 @@
   },
   "scripts": {
     "dev": "pnpm --filter web dev",
-    "lint:base": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path .gitignore",
-    "lint:debug": "pnpm lint:base --debug",
-    "lint:fix": "pnpm lint:base --fix",
-    "lint:react-gantt": "pnpm lint:base ./packages/react-gantt",
-    "lint:react-gantt:debug": "pnpm lint:debug ./packages/react-gantt",
-    "lint:react-gantt:fix": "pnpm lint:fix ./packages/react-gantt",
-    "lint:web": "pnpm lint:base ./apps/web",
-    "lint:web:fix": "pnpm lint:fix ./apps/web",
-    "lint:web:debug": "pnpm lint:debug ./apps/web",
     "build": "rm -rf packages/*/dist && rollup -c --bundleConfigAsCjs",
     "build:watch": "rm -rf packages/*/dist && rollup -c --bundleConfigAsCjs --watch",
     "publish:react-gantt": "pnpm run build && pnpm --filter react-gantt publish --report-summary",
@@ -61,5 +52,8 @@
   "packageManager": "pnpm@8.6.12",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "resolutions": {
+    "tsconfig-paths": "^4.2.0"
+  }
 }

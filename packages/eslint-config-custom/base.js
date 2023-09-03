@@ -16,7 +16,7 @@ const config = {
       files: ["*.ts", "*.tsx"],
       parser: "@typescript-eslint/parser",
       parserOptions: {
-        project: ["./packages/*/tsconfig.json", "./apps/*/tsconfig.json"],
+        project: ["../../packages/*/tsconfig.json", "../../apps/*/tsconfig.json"],
       },
       plugins: ["@typescript-eslint"],
       rules: {
@@ -44,7 +44,7 @@ const config = {
         },
         "import/resolver": {
           typescript: {
-            project: ["./packages/*/tsconfig.json", "./apps/*/tsconfig.json"],
+            project: ["../../packages/*/tsconfig.json", "../../apps/*/tsconfig.json"],
           },
         },
       },
