@@ -1,5 +1,4 @@
 import { join, dirname } from "path";
-import { mergeConfig } from "vite";
 import { type StorybookConfig } from "@storybook/react-vite";
 
 function getAbsolutePath(value: string) {
@@ -20,15 +19,6 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
-  },
-  viteFinal: async (config) => {
-    return mergeConfig(config, {
-      resolve: {
-        alias: {
-          "@custardcream/react-gantt": join(__dirname, "../../../packages/react-gantt/src"),
-        },
-      },
-    });
   },
 };
 export default config;

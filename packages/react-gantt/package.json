@@ -30,9 +30,9 @@
     "react-dom": ">=18.2.0"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "eslint-config-custom": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

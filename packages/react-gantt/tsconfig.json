@@ -1,6 +1,6 @@
 {
   "extends": ["../../tsconfig.base.json", "../../tsconfig.paths.json"],
-  "compilerOptions": { "baseUrl": "." },
-  "include": ["./src/**/*"],
+  "compilerOptions": { "baseUrl": ".", "jsx": "react" },
+  "include": ["./src/**/*", "../../style.d.ts"],
   "exclude": ["node_modules"]
 }
