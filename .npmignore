@@ -13,3 +13,5 @@ yarn.error.log
 prettier.config.js
 rollup.config.mjs
 tsconfig.json
+
+.stylelintrc.json
