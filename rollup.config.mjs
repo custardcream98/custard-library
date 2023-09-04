@@ -28,14 +28,15 @@ const getRollupConfig = (packageFolderName) => {
       input: indexPath,
       output: [
         {
-          dir: path.resolve(packagePath, main),
+          dir: path.resolve(packagePath, main, "../"),
           format: "cjs",
           sourcemap: true,
           preserveModules: true,
+          preserveModulesRoot: path.resolve(packagePath, "src"),
           exports: "named",
         },
         {
-          dir: path.resolve(packagePath, module),
+          file: path.resolve(packagePath, module),
           format: "esm",
           sourcemap: true,
           exports: "named",
@@ -46,6 +47,9 @@ const getRollupConfig = (packageFolderName) => {
         nodeResolve(),
         typescript({
           tsconfig: path.resolve(packagePath, "tsconfig.json"),
+          compilerOptions: {
+            target: "esnext",
+          },
         }),
         styles({
           plugins: [autoprefixer],
@@ -57,11 +61,9 @@ const getRollupConfig = (packageFolderName) => {
         }),
         commonjs(),
         babel({
-          babelHelpers: "runtime",
+          babelHelpers: "bundled",
           exclude: "**/node_modules/**",
-          extensions: [".js", ".jsx", ".ts", ".tsx"],
           presets: ["@babel/preset-env", "@babel/preset-react"],
-          plugins: ["@babel/plugin-transform-runtime"],
         }),
         terser(),
       ],
