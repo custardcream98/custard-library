@@ -34,7 +34,8 @@
   ],
   "peerDependencies": {
     "react": ">=18.2.0",
-    "react-dom": ">=18.2.0"
+    "react-dom": ">=18.2.0",
+    "dayjs": ">=1.11.9"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
