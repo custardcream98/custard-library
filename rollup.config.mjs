@@ -34,9 +34,11 @@ const getRollupConfig = (packageFolderName) => {
           exports: "named",
         },
         {
-          file: path.resolve(packagePath, module),
+          dir: path.resolve(packagePath, module, "../"),
           format: "esm",
           sourcemap: true,
+          preserveModules: true,
+          preserveModulesRoot: path.resolve(packagePath, "src"),
           exports: "named",
         },
       ],
