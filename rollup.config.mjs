@@ -1,11 +1,9 @@
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import terser from "@rollup/plugin-terser";
-import typescript from "@rollup/plugin-typescript";
 import { dts } from "rollup-plugin-dts";
 import autoprefixer from "autoprefixer";
-import babel from "@rollup/plugin-babel";
 import styles from "rollup-plugin-styles";
+import { swc } from "rollup-plugin-swc3";
 
 import path from "path";
 
@@ -45,11 +43,11 @@ const getRollupConfig = (packageFolderName) => {
       external: [...Object.keys(packageJson.peerDependencies || {})],
       plugins: [
         nodeResolve(),
-        typescript({
+        swc({
+          exclude: "**/node_modules/**",
           tsconfig: path.resolve(packagePath, "tsconfig.json"),
-          compilerOptions: {
-            target: "esnext",
-          },
+          minify: !isDevelopment,
+          sourceMaps: isDevelopment,
         }),
         styles({
           plugins: [autoprefixer],
@@ -60,12 +58,6 @@ const getRollupConfig = (packageFolderName) => {
           mode: ["inject", customStyleInjector(packageFolderName)],
         }),
         commonjs(),
-        babel({
-          babelHelpers: "bundled",
-          exclude: "**/node_modules/**",
-          presets: ["@babel/preset-env", "@babel/preset-react"],
-        }),
-        terser(),
       ],
     },
     {
