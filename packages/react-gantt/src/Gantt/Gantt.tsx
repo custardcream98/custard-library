@@ -1,13 +1,8 @@
 import type { GanttOptions, Task } from "../_types";
 
+import { GanttHeader } from "./GanttHeader";
 import { GanttOptionProvider } from "./GanttOptionProvider";
-import {
-  setupDatesInRange,
-  setupGanttHeaderFirstRowLabels,
-  setupGanttHeaderSecondRowLabels,
-  setupOptions,
-  setupTasks,
-} from "./setup";
+import { setupDatesInRange, setupOptions, setupTasks } from "./setup";
 
 import style from "./Gantt.module.scss";
 
@@ -26,16 +21,7 @@ export function Gantt({ tasks = [], ...options }: GanttProps) {
     [resolvedOptions.viewMode, resolvedTasks],
   );
 
-  const headerFirstRowLabels = useMemo(
-    () => setupGanttHeaderFirstRowLabels(datsInRange, resolvedOptions.viewMode, resolvedOptions.columnWidth),
-    [resolvedOptions.viewMode, resolvedOptions.columnWidth, datsInRange],
-  );
-  const headerSecondRowLabels = useMemo(
-    () => setupGanttHeaderSecondRowLabels(datsInRange, resolvedOptions.viewMode),
-    [resolvedOptions.viewMode, datsInRange],
-  );
-
-  const chartWidth = resolvedOptions.columnWidth * headerSecondRowLabels.length;
+  const chartWidth = resolvedOptions.columnWidth * datsInRange.length;
 
   return (
     <GanttOptionProvider options={resolvedOptions}>
@@ -45,36 +31,7 @@ export function Gantt({ tasks = [], ...options }: GanttProps) {
             width: chartWidth,
           }}
         >
-          <div>
-            {headerFirstRowLabels.map(({ label, width }) => {
-              return (
-                <div
-                  key={label}
-                  className={style.headerFirstRowLabelWrapper}
-                  style={{
-                    width,
-                  }}
-                >
-                  <span className={style.headerFirstRowLabel}>{label}</span>
-                </div>
-              );
-            })}
-          </div>
-          <div>
-            {headerSecondRowLabels.map((label) => {
-              return (
-                <div
-                  key={label}
-                  className={style.headerSecondRowLabel}
-                  style={{
-                    width: resolvedOptions.columnWidth,
-                  }}
-                >
-                  {label}
-                </div>
-              );
-            })}
-          </div>
+          <GanttHeader datsInRange={datsInRange} />
         </div>
       </div>
     </GanttOptionProvider>

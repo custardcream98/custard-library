@@ -1,0 +1,21 @@
+.headerFirstRowLabelWrapper {
+  display: inline-block;
+  padding: 0.3rem 0;
+  background-color: #f5f5f5;
+}
+.headerFirstRowLabel {
+  position: sticky;
+  left: 0;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+.headerSecondRowLabel {
+  display: inline-block;
+  text-align: center;
+  padding: 0.2rem 0;
+  background-color: #f5f5f5;
+
+  &--weekend {
+    color: #838383;
+  }
+}

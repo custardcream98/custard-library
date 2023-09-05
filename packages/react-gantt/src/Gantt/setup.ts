@@ -8,7 +8,7 @@ const DEFAULT_WIDTH: Record<ViewMode, number> = {
   week: 64,
   year: 52,
 };
-const DEFAULT_VIEWMODE: ViewMode = "month";
+const DEFAULT_VIEWMODE: ViewMode = "week";
 const DEFAULT_OPTIONS: GanttOptions = {
   columnWidth: DEFAULT_WIDTH[DEFAULT_VIEWMODE],
   viewMode: DEFAULT_VIEWMODE,
@@ -127,6 +127,7 @@ export const setupDatesInRange = (tasks: TaskInternal[], viewMode: ViewMode) => 
   return dates;
 };
 
+const KOREAN_WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
 export const setupGanttHeaderSecondRowLabels = (datesInRange: Dayjs[], viewMode: ViewMode) => {
   return datesInRange.map((date) => {
     if (viewMode === "year") {
@@ -134,15 +135,17 @@ export const setupGanttHeaderSecondRowLabels = (datesInRange: Dayjs[], viewMode:
     } else if (viewMode === "month") {
       return date.format("D");
     } else {
-      return date.format("d D");
+      const day = date.day();
+
+      return `${date.format("D")} ${KOREAN_WEEKDAY[day]}`;
     }
   });
 };
 
 const FIRST_ROW_FORMAT: Record<ViewMode, string> = {
-  month: "YYYY MMM",
-  week: "MMM D",
-  year: "YYYY",
+  month: "YYYY년 M월",
+  week: "YYYY년 M월",
+  year: "YYYY년",
 };
 const groupByViewMode = (datesInRange: Dayjs[], viewMode: ViewMode) => {
   return datesInRange.reduce<{ labels: string[]; count: number[] }>(
