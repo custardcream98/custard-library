@@ -6,6 +6,7 @@ import styles from "rollup-plugin-styles";
 import { swc } from "rollup-plugin-swc3";
 
 import path from "path";
+import fs from "fs";
 
 import { customStyleInjector } from "./css-injector";
 
@@ -79,6 +80,7 @@ const getRollupConfig = (packageFolderName) => {
   ];
 };
 
-const rollupConfigs = [...getRollupConfig("react-gantt")];
+const packages = fs.readdirSync(PACKAGE_ROOT_PATH).filter((name) => !name.includes("eslint"));
+const rollupConfigs = packages.map((packageFolderName) => getRollupConfig(packageFolderName)).flat();
 
 export default rollupConfigs;
