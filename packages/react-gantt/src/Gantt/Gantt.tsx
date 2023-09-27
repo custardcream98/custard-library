@@ -1,5 +1,6 @@
 import type { GanttOptions, Task } from "../_types";
 
+import { GanttBarLayout } from "./GanttLayout/GanttBarLayout";
 import { GanttHeader } from "./GanttHeader";
 import { GanttOptionProvider } from "./GanttOptionProvider";
 import { setupDatesInRange, setupOptions, setupTasks } from "./setup";
@@ -24,16 +25,12 @@ export function Gantt({ tasks = [], ...options }: GanttProps) {
   const chartWidth = resolvedOptions.columnWidth * datsInRange.length;
 
   return (
-    <GanttOptionProvider options={resolvedOptions}>
-      <div className={style.outerWrapper}>
-        <div
-          style={{
-            width: chartWidth,
-          }}
-        >
+    <div className={style.outerWrapper}>
+      <GanttOptionProvider options={resolvedOptions}>
+        <GanttBarLayout layoutWidth={chartWidth}>
           <GanttHeader datsInRange={datsInRange} />
-        </div>
-      </div>
-    </GanttOptionProvider>
+        </GanttBarLayout>
+      </GanttOptionProvider>
+    </div>
   );
 }
