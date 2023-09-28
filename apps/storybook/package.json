@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@custardcream/react-gantt": "workspace:*",
+    "@custardcream/react-virtual": "workspace:*",
     "dayjs": "^1.11.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
