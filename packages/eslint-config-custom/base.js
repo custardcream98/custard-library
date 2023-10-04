@@ -44,7 +44,7 @@ const config = {
         },
         "import/resolver": {
           typescript: {
-            project: ["../../packages/*/tsconfig.json", "../../apps/*/tsconfig.json"],
+            project: ["packages/*/tsconfig.json", "apps/*/tsconfig.json"],
           },
         },
       },
@@ -68,6 +68,7 @@ const config = {
     "import/no-named-as-default": "off",
     "import/no-named-as-default-member": "off",
     "import/no-unused-modules": ["off", { unusedExports: true }],
+    "import/no-unresolved": "error",
     "linebreak-style": ["error", "unix"],
     "no-await-in-loop": ["error"],
     "no-constant-binary-expression": ["error"],
