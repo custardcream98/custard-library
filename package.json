@@ -62,7 +62,8 @@
   },
   "packageManager": "pnpm@8.6.12",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "resolutions": {
     "tsconfig-paths": "^4.2.0"
