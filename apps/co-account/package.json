@@ -4,6 +4,7 @@
   "author": "shiwoo.park <custardcream@kakao.com>",
   "private": true,
   "scripts": {
+    "db:type": "export $(cat .env | xargs) && supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > ./src/types/database.ts && prettier --write ./src/types/database.ts",
     "prepare": "panda codegen",
     "dev": "next dev",
     "build": "next build",
@@ -25,6 +26,7 @@
     "eslint": "^8",
     "eslint-config-custom": "workspace:*",
     "eslint-config-next": "13.5.4",
+    "supabase": "^1.100.1",
     "typescript": "^5"
   }
 }
