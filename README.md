@@ -2,6 +2,14 @@
 
 리액트 컴포넌트 라이브러리 포트폴리오를 위한 모노레포입니다.
 
+## 가장 최근 작업물 구경하기
+
+`@custardcream/very-simple-store`
+
+간단한 방법으로 구현한 전역 상태관리 라이브러리입니다.
+
+- [웹 데모](https://custard-library-web.vercel.app/)
+
 ## 모노레포 설정
 
 `pnpm workspace`를 사용해 환경을 구성했습니다. 모노레포 구조, 설정하는 과정에서 알게 된 사실들을 정리하겠습니다.
@@ -9,7 +17,6 @@
 ### `packages`
 
 - `eslint-config-custom`: 커스텀 ESLint 룰을 모아둡니다. `base.js`, `react.js` 등으로 분리해 관리합니다. 사용하는 측에서는 devDependency로 추가하고 ESLint config에서 extend하면 됩니다. ([예시](./packages/react-gantt/.eslintrc.json)) 패키지마다 조금씩 다른 설정을 할 수 있도록 이렇게 관리하기로 했습니다.
-- `react-gantt`: 간트 차트 라이브러리입니다. `stylelint` 관련 설정이 추가됩니다.
 
 ### `apps`
 
