@@ -1,0 +1,4 @@
+{
+  "extends": ["custom/react", "custom"],
+  "root": true
+}

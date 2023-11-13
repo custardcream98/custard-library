@@ -1,0 +1,50 @@
+{
+  "author": "shiwoo.park <custardcream@kakao.com>",
+  "name": "@custardcream/very-simple-store",
+  "version": "0.0.0",
+  "bugs": {
+    "url": "https://github.com/custardcream98/custard-library/issues"
+  },
+  "description": "A Simple React State Manager",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/custardcream98/custard-library.git"
+  },
+  "keywords": [
+    "react",
+    "state",
+    "manager"
+  ],
+  "homepage": "https://shiwoo.dev",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "lint:base": "eslint --ext .ts,.tsx,.js,.jsx .",
+    "lint:fix": "pnpm lint:base --fix",
+    "lint:debug": "pnpm lint:base --debug",
+    "lint:style": "stylelint .",
+    "lint": "pnpm lint:base && pnpm lint:style",
+    "pre-commit": "lint-staged"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "eslint-config-custom": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx}": "pnpm lint:fix",
+    "src/**/*.{css,scss}": "pnpm lint:style --fix"
+  }
+}

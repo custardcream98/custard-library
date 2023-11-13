@@ -1,0 +1,10 @@
+{
+  "extends": ["../../tsconfig.base.json", "../../tsconfig.paths.json", "../../tsconfig.cssModule.json"],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "jsx": "react"
+  },
+  "include": ["./src/**/*", "../../style.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}
