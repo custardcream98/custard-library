@@ -22,7 +22,6 @@
     "lint:base": "eslint --ext .ts,.tsx,.js,.jsx .",
     "lint:fix": "pnpm lint:base --fix",
     "lint:debug": "pnpm lint:base --debug",
-    "lint:style": "stylelint .",
     "lint": "pnpm lint:base && pnpm lint:style",
     "pre-commit": "lint-staged"
   },

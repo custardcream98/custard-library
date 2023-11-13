@@ -8,9 +8,9 @@ export type StoreNode<T> = {
 export const addStoreNode = <T>({ key, initialState }: { key: string; initialState: T }): StoreNode<T> => {
   return {
     key,
-    value: initialState,
-    subscribers: new Set(),
     selectors: new Set(),
+    subscribers: new Set(),
+    value: initialState,
   };
 };
 
