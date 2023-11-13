@@ -6,6 +6,8 @@
 
 `@custardcream/very-simple-store`
 
+[프로젝트 바로가기](https://github.com/custardcream98/custard-library/tree/main/packages/very-simple-store)
+
 간단한 방법으로 구현한 전역 상태관리 라이브러리입니다.
 
 - [웹 데모](https://custard-library-web.vercel.app/)
