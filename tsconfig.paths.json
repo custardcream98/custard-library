@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"],
-      "@custardcream/*": ["../../packages/*/src/index.ts"]
+      "@/*": ["./src/*"]
     }
   }
 }

@@ -10,15 +10,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@custardcream/very-simple-store": "workspace:^",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
-    "@custardcream/react-gantt": "workspace:*",
     "@types/node": "20.5.8",
     "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7"
+    "@types/react-dom": "18.2.7",
+    "eslint-config-custom": "workspace:*"
   }
 }
