@@ -11,9 +11,11 @@ export default function Home() {
           <code>
             {`import {
   addStoreNode,
+  addStoreSelectorNode,
   StoreRoot,
   useStoreNode,
   useStoreNodeValue,
+  useStoreSelectorNode,
 } from "@custardcream/very-simple-store";
 
 const node = addStoreNode({
@@ -73,6 +75,35 @@ const Children3 = () => {
       <div>Children3</div>
       <button onClick={() => setValue((prev) => prev + 1)}>Increment</button>
       <div>value: {value}</div>
+    </div>
+  );
+};
+
+const node2 = addStoreNode({
+  initialState: 10,
+  key: "testCounter2",
+});
+
+const sumSelectorNode = addStoreSelectorNode({
+  key: "testCounterSum",
+  selector: ({ get }) => {
+    const testCounter = get(node);
+    const testCounter2 = get(node2);
+    return testCounter + testCounter2;
+  },
+});
+
+const NodeSum = () => {
+  const sum = useStoreSelectorNode(sumSelectorNode);
+
+  return (
+    <div
+      style={{
+        backgroundColor: "ivory",
+        padding: "10px",
+      }}
+    >
+      selectorValue: {sum}
     </div>
   );
 };

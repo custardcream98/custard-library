@@ -2,10 +2,12 @@
 
 import {
   addStoreNode,
+  addStoreSelectorNode,
   StoreRoot,
   useCurrentStoreState_ONLY_FOR_DEVELOPMENT,
   useStoreNode,
   useStoreNodeValue,
+  useStoreSelectorNode,
 } from "@custardcream/very-simple-store";
 import React, { useCallback, useEffect, useState } from "react";
 
@@ -34,6 +36,7 @@ export function Test() {
       <StoreViewer />
       <Children1></Children1>
       <Children3 />
+      <NodeSum />
     </StoreRoot>
   );
 }
@@ -43,7 +46,7 @@ function StoreViewer() {
   const [currentStoreStringified, setCurrentStoreStringified] = useState("{}");
 
   const handleStoreRefresh = useCallback(() => {
-    const { testCounter } = Object.fromEntries(getStore().entries());
+    const { testCounter } = Object.fromEntries(getStore()._nodes.entries());
     setCurrentStoreStringified(
       JSON.stringify({
         key: testCounter.key,
@@ -128,6 +131,36 @@ const Children3 = () => {
       <div>Children3</div>
       <button onClick={() => setValue((prev) => prev + 1)}>Increment</button>
       <div>value: {value}</div>
+    </div>
+  );
+};
+
+const node2 = addStoreNode({
+  initialState: 10,
+  key: "testCounter2",
+});
+const sumSelectorNode = addStoreSelectorNode({
+  key: "testCounterSum",
+  selector: ({ get }) => {
+    const testCounter = get(node);
+    const testCounter2 = get(node2);
+    return testCounter + testCounter2;
+  },
+});
+const NodeSum = () => {
+  const sum = useStoreSelectorNode(sumSelectorNode);
+  const ref = React.useRef<HTMLDivElement>(null);
+  useRenderBlink(ref);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        backgroundColor: "ivory",
+        padding: "10px",
+      }}
+    >
+      selectorValue: {sum}
     </div>
   );
 };
