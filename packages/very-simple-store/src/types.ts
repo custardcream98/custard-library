@@ -8,16 +8,18 @@ export type StoreNode<T> = {
 
 export type Store = {
   _nodes: Map<StoreNodeKey, StoreNode<any>>;
-  _selectors: Set<SelectorNode<any>>;
+  _selectors: Map<StoreNodeKey, SelectorNode<any>>;
 };
 export type StoreRef = {
   current: Store;
 };
 
 export type SelectorGetter<T = any> = (node: StoreNode<T>) => T;
+export type Selector<T> = ({ get }: { get: <U>(node: StoreNode<U>) => U }) => T;
 export type SelectorNode<T> = {
   key: StoreNodeKey;
-  selector: ({ get }: { get: SelectorGetter }) => T;
+  selector: Selector<T>;
+  value: T;
   dependencies: Set<StoreNodeKey>;
-  dependenciesPrevValues: Map<StoreNodeKey, StoreNode<any>>;
+  subscribers: Set<() => void>;
 };

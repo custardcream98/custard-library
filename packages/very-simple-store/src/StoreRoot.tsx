@@ -4,7 +4,7 @@ import React from "react";
 
 const DEFAULT_STORE: Store = {
   _nodes: new Map(),
-  _selectors: new Set(),
+  _selectors: new Map(),
 };
 
 export const StoreRefContext = React.createContext<StoreRef>({
