@@ -50,7 +50,8 @@ const getRollupConfig = (packageFolderName) => {
           exclude: "**/node_modules/**",
           tsconfig: path.resolve(packagePath, "tsconfig.json"),
           minify: !isDevelopment,
-          sourceMaps: isDevelopment,
+          sourceMaps: !isDevelopment,
+          jsc: { minify: { sourceMap: !isDevelopment } },
         }),
         styles({
           plugins: [autoprefixer],
