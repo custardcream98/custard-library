@@ -2,6 +2,7 @@
   pre {
     border-radius: 0.25rem;
     padding: 1rem;
+    overflow: auto;
   }
 
   code {
@@ -9,6 +10,7 @@
     row-gap: 0.5rem;
 
     & > [data-line] {
+      padding-right: 2rem;
       &::before {
         counter-increment: line;
         content: counter(line);
