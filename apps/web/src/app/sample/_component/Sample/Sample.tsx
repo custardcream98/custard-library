@@ -116,7 +116,13 @@ const Children2 = () => {
       }}
     >
       Children2
-      <div>testCounter1: {value}</div>
+      <div
+        style={{
+          marginTop: "10px",
+        }}
+      >
+        testCounter1: {value}
+      </div>
     </div>
   );
 };
@@ -135,7 +141,7 @@ const Children3 = () => {
       }}
     >
       <div>Children3</div>
-      <button className={style.sampleButton} onClick={() => setValue((prev) => prev + 1)}>
+      <button type="button" className={style.sampleButton} onClick={() => setValue((prev) => prev + 1)}>
         Increment Button
       </button>
       <div>testCounter1: {value}</div>
@@ -157,7 +163,7 @@ const Children4 = () => {
       }}
     >
       <div>Children4</div>
-      <button className={style.sampleButton} onClick={() => setValue((prev) => prev + 1)}>
+      <button type="button" className={style.sampleButton} onClick={() => setValue((prev) => prev + 1)}>
         Increment Button
       </button>
       <div>testCounter2: {value}</div>
@@ -178,6 +184,13 @@ const SelectorDisplay = () => {
         padding: "10px",
       }}
     >
+      <div
+        style={{
+          marginBottom: "10px",
+        }}
+      >
+        SelectorDisplay
+      </div>
       selectorValue: {sum}
     </div>
   );
