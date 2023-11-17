@@ -32,14 +32,34 @@ export function Sample() {
   );
 }
 
+const plainObjectFilter = (filters: string[], object: Record<any, any>) =>
+  Object.entries(object).reduce<Record<any, any>>((acc, [key, value]) => {
+    if (filters.includes(key)) return acc;
+    acc[key] = value;
+    return acc;
+  }, {});
+
 function StoreViewer() {
   const store = useCurrentStoreState_ONLY_FOR_DEVELOPMENT();
+
+  const normalizedStore = React.useMemo(() => {
+    return {
+      selectors: Object.entries(store.selectors).reduce<Record<any, any>>((acc, [key, value]) => {
+        acc[key] = plainObjectFilter(["dependencies", "subscribers"], value);
+        return acc;
+      }, {}),
+      state: Object.entries(store.state).reduce<Record<any, any>>((acc, [key, value]) => {
+        acc[key] = plainObjectFilter(["dependencies", "subscribers"], value);
+        return acc;
+      }, {}),
+    };
+  }, [store]);
 
   return (
     <div className={style.wrapper}>
       <div className={style.title}>Store의 현재 상태</div>
       <div className={style.prettyPrintJsonWrapper}>
-        <PrettyPrintJSON json={store} />
+        <PrettyPrintJSON json={normalizedStore} />
       </div>
     </div>
   );
