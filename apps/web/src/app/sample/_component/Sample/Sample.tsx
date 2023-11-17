@@ -11,6 +11,9 @@ import {
 } from "@custardcream/very-simple-store";
 import React from "react";
 import { useRenderBlink } from "./useRenderBlink";
+import { PrettyPrintJSON } from "../PrettyPrintJSON";
+
+import style from "./Sample.module.scss";
 
 const node = addStoreNode({
   initialState: 0,
@@ -32,15 +35,11 @@ function StoreViewer() {
   const store = useCurrentStoreState_ONLY_FOR_DEVELOPMENT();
 
   return (
-    <div
-      style={{
-        backgroundColor: "lightyellow",
-        margin: "20px 0",
-        padding: "10px",
-      }}
-    >
-      <div>Store의 현재 상태</div>
-      <div>{JSON.stringify(store)}</div>
+    <div className={style.storeViewerWrapper}>
+      <div className={style.title}>Store의 현재 상태</div>
+      <div>
+        <PrettyPrintJSON json={store} />
+      </div>
     </div>
   );
 }

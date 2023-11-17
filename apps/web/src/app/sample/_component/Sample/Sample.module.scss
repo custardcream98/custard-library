@@ -1,0 +1,13 @@
+$storeViewerWrapper-background-color: rgb(142, 142, 142);
+.storeViewerWrapper {
+  background-color: $storeViewerWrapper-background-color;
+  border-radius: 0.75rem;
+
+  padding: 0.1rem;
+  margin-bottom: 2rem;
+
+  .title {
+    padding: 0.5rem 0.5rem;
+    color: rgb(255, 255, 255);
+  }
+}
