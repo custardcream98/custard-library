@@ -7,6 +7,10 @@
   backdrop-filter: blur(20px);
   background-color: rgba(255, 255, 255, 0.423);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  @media (max-width: layout-variable.$breakpoint-tablet) {
+    padding: 1rem 0;
+  }
 }
 
 .wrapper {
@@ -20,13 +24,20 @@
 .h1 {
   font-size: 1.5rem;
   font-weight: 600;
-}
 
+  @media (max-width: layout-variable.$breakpoint-tablet) {
+    font-size: 1.2rem;
+  }
+}
 
 .link {
   color: layout-variable.$link-color;
   text-decoration: none;
   font-weight: 600;
+
+  @media (max-width: layout-variable.$breakpoint-tablet) {
+    font-size: 0.9rem;
+  }
 
   &:hover {
     color: layout-variable.$link-color-hover;
