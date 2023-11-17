@@ -2,6 +2,10 @@
 
 간단한 방법으로 구현한 React 전역 상태 관리 라이브러리입니다.
 
+## 샘플 코드와 실행 예시
+
+[링크](https://custard-library-web.vercel.app/sample)
+
 ## 설치
 
 ```bash
