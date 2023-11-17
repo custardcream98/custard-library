@@ -6,13 +6,13 @@ import {
   StoreRoot,
   useCurrentStoreState_ONLY_FOR_DEVELOPMENT,
   useStoreNode,
-  useStoreNodeValue,
+  useStoreNodeGetter,
   useStoreSelectorNode,
 } from "@custardcream/very-simple-store";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 
 const useRenderBlink = (ref: React.RefObject<HTMLElement>) => {
-  useEffect(() => {
+  React.useEffect(() => {
     if (ref.current) {
       ref.current.style.outline = "2px solid orange";
     }
@@ -42,18 +42,7 @@ export function Test() {
 }
 
 function StoreViewer() {
-  const getStore = useCurrentStoreState_ONLY_FOR_DEVELOPMENT();
-  const [currentStoreStringified, setCurrentStoreStringified] = useState("{}");
-
-  const handleStoreRefresh = useCallback(() => {
-    const { testCounter } = Object.fromEntries(getStore()._nodes.entries());
-    setCurrentStoreStringified(
-      JSON.stringify({
-        key: testCounter.key,
-        value: testCounter.value,
-      }),
-    );
-  }, [getStore]);
+  const store = useCurrentStoreState_ONLY_FOR_DEVELOPMENT();
 
   return (
     <div
@@ -63,17 +52,8 @@ function StoreViewer() {
         padding: "10px",
       }}
     >
-      <div>Store의 현재 상태 (최신 상태를 보려면 refresh)</div>
-      <button
-        style={{
-          margin: "10px 0",
-        }}
-        type="button"
-        onClick={handleStoreRefresh}
-      >
-        store refresh
-      </button>
-      <div>{currentStoreStringified}</div>
+      <div>Store의 현재 상태</div>
+      <div>{JSON.stringify(store)}</div>
     </div>
   );
 }
@@ -97,7 +77,7 @@ const Children1 = () => {
 };
 
 const Children2 = () => {
-  const value = useStoreNodeValue(node);
+  const value = useStoreNodeGetter(node);
   const ref = React.useRef<HTMLDivElement>(null);
   useRenderBlink(ref);
 

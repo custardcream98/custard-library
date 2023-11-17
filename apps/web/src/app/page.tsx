@@ -14,7 +14,7 @@ export default function Home() {
   addStoreSelectorNode,
   StoreRoot,
   useStoreNode,
-  useStoreNodeValue,
+  useStoreNodeGetter,
   useStoreSelectorNode,
 } from "@custardcream/very-simple-store";
 
@@ -47,7 +47,7 @@ const Children1 = () => {
 };
 
 const Children2 = () => {
-  const value = useStoreNodeValue(node);
+  const value = useStoreNodeGetter(node);
 
   return (
     <div
