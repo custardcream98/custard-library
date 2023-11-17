@@ -2,67 +2,88 @@
 
 간단한 방법으로 구현한 React 전역 상태 관리 라이브러리입니다.
 
+## 설치
+
+```bash
+npm install @custardcream/very-simple-store
+```
+
+## 사용법
+
+### StoreRoot로 루트 감싸기
+
 ```tsx
-import { addStoreNode, StoreRoot, useStoreNode, useStoreNodeValue } from "@custardcream/very-simple-store";
+import { StoreRoot } from "@custardcream/very-simple-store";
 
-const node = addStoreNode({
-  initialState: 0,
-  key: "testCounter",
-});
-
-export function Test() {
+const App = () => {
   return (
     <StoreRoot>
-      <Children1></Children1>
-      <Children3 />
+      <App />
     </StoreRoot>
   );
-}
-
-const Children1 = () => {
-  return (
-    <div
-      style={{
-        backgroundColor: "lightblue",
-        padding: "10px",
-      }}
-    >
-      Children1
-      <Children2 />
-    </div>
-  );
 };
+```
 
-const Children2 = () => {
-  const value = useStoreNodeValue(node);
+### `StoreNode` 사용하기
+
+`StoreNode`는 가장 기본적인 전역 상태의 단위입니다. `addStoreNode` 함수를 사용해 전역 상태를 선언할 수 있습니다.
+
+```tsx
+import { addStoreNode } from "@custardcream/very-simple-store";
+
+export const storeNode = addStoreNode({
+  initialState: 0,
+  key: "testValue",
+});
+```
+
+이렇게 선언된 `storeNode`는 `useStoreNode` 훅을 통해 사용할 수 있습니다.
+
+```tsx
+import { useStoreNode } from "@custardcream/very-simple-store";
+import { storeNode } from "./storeNode";
+
+const TestComponent = () => {
+  const [value, setValue] = useStoreNode(storeNode);
 
   return (
-    <div
-      style={{
-        backgroundColor: "lightpink",
-        padding: "10px",
-      }}
-    >
-      Children2
-      <div>value: {value}</div>
-    </div>
-  );
-};
-
-const Children3 = () => {
-  const [value, setValue] = useStoreNode(node);
-
-  return (
-    <div
-      style={{
-        backgroundColor: "lightgreen",
-        padding: "10px",
-      }}
-    >
-      <div>Children3</div>
-      <button onClick={() => setValue((prev) => prev + 1)}>Increment</button>
-      <div>value: {value}</div>
+    <div>
+      <p>{value}</p>
+      <button onClick={() => setValue((prev) => prev + 1)}>+</button>
     </div>
   );
 };
 ```
+
+`storeNode`를 어디에서 선언하는지는 중요하지 않습니다. 어디서든 해당 전역 상태를 사용하고 싶다면 `useStoreNode` 훅으로 사용해주세요.
+
+### `StoreSelectorNode` 사용하기
+
+`StoreSelectorNode`는 `StoreNode`를 기반으로 계산되는 상태의 단위입니다. `addStoreSelectorNode` 함수를 사용해 선언할 수 있습니다.
+
+```tsx
+import { addStoreSelectorNode } from "@custardcream/very-simple-store";
+import { storeNode } from "./storeNode";
+
+export const storeSelectorNode = addStoreSelectorNode({
+  key: "testStoreNodePlusOne",
+  selector: ({ get }) => get(storeNode) + 1,
+});
+```
+
+`addStoreSelectorNode`에서 `selector` 파라미터는 `get`이라는 getter 함수를 제공합니다. 이 함수에 `StoreNode`를 넣으면 해당 `StoreNode`의 값을 가져올 수 있습니다.
+
+이렇게 선언된 `storeSelectorNode`는 `useStoreSelectorNode` 훅을 통해 사용할 수 있습니다.
+
+```tsx
+import { useStoreSelectorNode } from "@custardcream/very-simple-store";
+import { storeSelectorNode } from "./storeSelectorNode";
+
+const TestComponent = () => {
+  const value = useStoreSelectorNode(storeSelectorNode);
+
+  return <p>{value}</p>;
+};
+```
+
+`selectorNode` 또한 어디서 선언하는지는 중요하지 않습니다. 어디서든 해당 selector를 사용하고 싶다면 `useStoreSelectorNode` 훅으로 사용해주세요.
