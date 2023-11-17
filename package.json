@@ -10,8 +10,8 @@
     "dev": "pnpm --filter web dev",
     "build": "rm -rf packages/*/dist && rollup -c --bundleConfigAsCjs",
     "build:watch": "pnpm build --watch",
-    "publish:react-gantt": "pnpm run build && pnpm --filter react-gantt publish --report-summary",
-    "publish:very-simple-store": "pnpm run build && pnpm --filter very-simple-store publish --report-summary",
+    "publish:react-gantt": "pnpm run build && pnpm --filter react-gantt publish --report-summary --access public",
+    "publish:very-simple-store": "pnpm run build && pnpm --filter very-simple-store publish --report-summary --access public",
     "storybook": "NODE_ENV=development concurrently \"pnpm build:watch\" \"pnpm --filter ./apps/storybook storybook\"",
     "prepare": "husky install",
     "pre-commit": "pnpm --filter \"@custardcream/*\" pre-commit"
