@@ -1,0 +1,16 @@
+.body {
+  max-width: min(calc(100vw - 2rem), 1024px);
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav {
+  > a + a {
+    margin-left: 1rem;
+  }
+}
