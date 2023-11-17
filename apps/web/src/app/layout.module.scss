@@ -1,16 +1,11 @@
-.body {
-  max-width: min(calc(100vw - 2rem), 1024px);
+@use "./layout-variable";
+
+.main {
+  max-width: layout-variable.$layout-max-width;
   margin: 0 auto;
+  padding-bottom: 1rem;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav {
-  > a + a {
-    margin-left: 1rem;
-  }
+.description {
+  margin-top: 1rem;
 }
