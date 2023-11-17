@@ -1,9 +1,16 @@
 @use "./layout-variable";
 
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .main {
   max-width: layout-variable.$layout-max-width;
   margin: 0 auto;
   padding-bottom: 1rem;
+  flex: 1;
 }
 
 .description {
