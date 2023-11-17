@@ -15,18 +15,19 @@ import { PrettyPrintJSON } from "../PrettyPrintJSON";
 
 import style from "./Sample.module.scss";
 
-const node = addStoreNode({
-  initialState: 0,
-  key: "testCounter",
-});
-
 export function Sample() {
   return (
     <StoreRoot>
       <StoreViewer />
-      <Children1></Children1>
-      <Children3 />
-      <NodeSum />
+      <div className={style.wrapper}>
+        <div className={style.title}>Sample (버튼을 눌러보세요)</div>
+        <div className={style.sampleWrapper}>
+          <Children1 />
+          <Children3 />
+          <Children4 />
+          <SelectorDisplay />
+        </div>
+      </div>
     </StoreRoot>
   );
 }
@@ -35,14 +36,33 @@ function StoreViewer() {
   const store = useCurrentStoreState_ONLY_FOR_DEVELOPMENT();
 
   return (
-    <div className={style.storeViewerWrapper}>
+    <div className={style.wrapper}>
       <div className={style.title}>Store의 현재 상태</div>
-      <div>
+      <div className={style.prettyPrintJsonWrapper}>
         <PrettyPrintJSON json={store} />
       </div>
     </div>
   );
 }
+
+const testCounter1Node = addStoreNode({
+  initialState: 0,
+  key: "testCounter1",
+});
+
+const testCounter2Node = addStoreNode({
+  initialState: 10,
+  key: "testCounter2",
+});
+
+const sumSelectorNode = addStoreSelectorNode({
+  key: "testCounterSum",
+  selector: ({ get }) => {
+    const testCounter = get(testCounter1Node);
+    const testCounter2 = get(testCounter2Node);
+    return testCounter + testCounter2;
+  },
+});
 
 const Children1 = () => {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -63,7 +83,7 @@ const Children1 = () => {
 };
 
 const Children2 = () => {
-  const value = useStoreNodeGetter(node);
+  const value = useStoreNodeGetter(testCounter1Node);
   const ref = React.useRef<HTMLDivElement>(null);
   useRenderBlink(ref);
 
@@ -76,13 +96,13 @@ const Children2 = () => {
       }}
     >
       Children2
-      <div>value: {value}</div>
+      <div>testCounter1: {value}</div>
     </div>
   );
 };
 
 const Children3 = () => {
-  const [value, setValue] = useStoreNode(node);
+  const [value, setValue] = useStoreNode(testCounter1Node);
   const ref = React.useRef<HTMLDivElement>(null);
   useRenderBlink(ref);
 
@@ -95,25 +115,37 @@ const Children3 = () => {
       }}
     >
       <div>Children3</div>
-      <button onClick={() => setValue((prev) => prev + 1)}>Increment</button>
-      <div>value: {value}</div>
+      <button className={style.sampleButton} onClick={() => setValue((prev) => prev + 1)}>
+        Increment Button
+      </button>
+      <div>testCounter1: {value}</div>
     </div>
   );
 };
 
-const node2 = addStoreNode({
-  initialState: 10,
-  key: "testCounter2",
-});
-const sumSelectorNode = addStoreSelectorNode({
-  key: "testCounterSum",
-  selector: ({ get }) => {
-    const testCounter = get(node);
-    const testCounter2 = get(node2);
-    return testCounter + testCounter2;
-  },
-});
-const NodeSum = () => {
+const Children4 = () => {
+  const [value, setValue] = useStoreNode(testCounter2Node);
+  const ref = React.useRef<HTMLDivElement>(null);
+  useRenderBlink(ref);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        backgroundColor: "lightcoral",
+        padding: "10px",
+      }}
+    >
+      <div>Children4</div>
+      <button className={style.sampleButton} onClick={() => setValue((prev) => prev + 1)}>
+        Increment Button
+      </button>
+      <div>testCounter2: {value}</div>
+    </div>
+  );
+};
+
+const SelectorDisplay = () => {
   const sum = useStoreSelectorNode(sumSelectorNode);
   const ref = React.useRef<HTMLDivElement>(null);
   useRenderBlink(ref);
