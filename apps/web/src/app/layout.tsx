@@ -1,7 +1,7 @@
 import style from "./layout.module.scss";
 
 import "../style/global.scss";
-import { Description, Header } from "./_component";
+import { Description, Footer, Header } from "./_component";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Description className={style.description} />
           <div className="mdx">{children}</div>
         </main>
+        <Footer />
       </body>
     </html>
   );
