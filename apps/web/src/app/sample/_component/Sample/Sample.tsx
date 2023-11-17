@@ -30,7 +30,7 @@ const node = addStoreNode({
   key: "testCounter",
 });
 
-export function Test() {
+export function Sample() {
   return (
     <StoreRoot>
       <StoreViewer />
