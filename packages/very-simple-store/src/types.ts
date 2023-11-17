@@ -7,6 +7,7 @@ export type StoreNode<T> = {
 };
 
 export type Store = {
+  _global_subscribers: Set<() => void>;
   _nodes: Map<StoreNodeKey, StoreNode<any>>;
   _selectors: Map<StoreNodeKey, SelectorNode<any>>;
 };

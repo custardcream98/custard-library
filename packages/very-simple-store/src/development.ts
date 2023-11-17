@@ -1,11 +1,26 @@
-import { StoreRefContext } from "./StoreRoot";
+import { useForceUpdate } from "./hooks/useForceUpdate";
+import { useStoreRef } from "./hooks";
 
-import React, { useCallback } from "react";
+import React from "react";
 
 export const useCurrentStoreState_ONLY_FOR_DEVELOPMENT = () => {
-  const storeRef = React.useContext(StoreRefContext);
+  const storeRef = useStoreRef();
+  const forceUpdate = useForceUpdate();
 
-  return useCallback(() => {
-    return storeRef.current;
-  }, [storeRef]);
+  React.useLayoutEffect(() => {
+    const store = storeRef.current;
+
+    store._global_subscribers.add(forceUpdate);
+
+    return () => {
+      store._global_subscribers.delete(forceUpdate);
+    };
+  }, [storeRef, forceUpdate]);
+
+  const store = {
+    selectors: Object.fromEntries(storeRef.current._selectors.entries()),
+    state: Object.fromEntries(storeRef.current._nodes.entries()),
+  };
+
+  return store;
 };

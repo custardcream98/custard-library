@@ -34,6 +34,10 @@ const resolveSelectors = <T>(store: Store, updatedNode: StoreNode<T>) => {
   });
 };
 
+const resolveGlobalSubscribers = (store: Store) => {
+  store._global_subscribers.forEach((callback) => callback());
+};
+
 export const useStoreNodeSetter = <T>(node: StoreNode<T>) => {
   const storeRef = useStoreRef();
   useStoreNodeInitialize_INTERNAL_USE_ONLY(node);
@@ -72,6 +76,7 @@ export const useStoreNodeSetter = <T>(node: StoreNode<T>) => {
           prevNode.subscribers.forEach((callback) => callback());
 
           resolveSelectors(store, newNode);
+          resolveGlobalSubscribers(store);
         }
       }
     },
