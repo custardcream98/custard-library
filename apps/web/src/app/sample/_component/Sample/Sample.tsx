@@ -10,20 +10,7 @@ import {
   useStoreSelectorNode,
 } from "@custardcream/very-simple-store";
 import React from "react";
-
-const useRenderBlink = (ref: React.RefObject<HTMLElement>) => {
-  React.useEffect(() => {
-    if (ref.current) {
-      ref.current.style.outline = "2px solid orange";
-    }
-
-    setTimeout(() => {
-      if (ref.current) {
-        ref.current.style.outline = "none";
-      }
-    }, 500);
-  });
-};
+import { useRenderBlink } from "./useRenderBlink";
 
 const node = addStoreNode({
   initialState: 0,
