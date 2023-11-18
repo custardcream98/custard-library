@@ -12,11 +12,9 @@ export const useStoreSelectorNode = <T>(selectorNode: SelectorNode<T>): T => {
   useStoreSelectorNodeAddSubscribe_INTERNAL_USE_ONLY(selectorNode);
 
   return (
-    (storeRef.current._selectors.get(selectorNode.key)?.value as T) ??
+    storeRef.current._getSelectorNode<T>(selectorNode.key)?.value ??
     selectorNode.selector({
-      get: (node) => {
-        return getNodeValue(storeRef.current, node);
-      },
+      get: (node) => getNodeValue(storeRef.current, node),
     })
   );
 };
