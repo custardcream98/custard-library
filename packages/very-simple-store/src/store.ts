@@ -36,6 +36,7 @@ export const createStore = (): Store => ({
 
       selectorNode.value = value;
       selectorNode._dependencies = dependencies;
+      selectorNode.isLoading = false;
 
       this._selectors.set(selectorNode.key, selectorNode);
 
@@ -46,6 +47,7 @@ export const createStore = (): Store => ({
 
     selectorNode.value = initialValue;
     selectorNode._dependencies = dependencies;
+    selectorNode.isLoading = false;
 
     this._selectors.set(selectorNode.key, selectorNode);
     onReady();
@@ -75,8 +77,13 @@ export const createStore = (): Store => ({
       });
 
       if (resolvedValue instanceof Promise) {
+        selectorNode.isLoading = true;
+        selectorNode.emitChange();
+        this.emitChange();
+
         resolvedValue.then((value) => {
           selectorNode.value = value;
+          selectorNode.isLoading = false;
 
           selectorNode.emitChange();
           this.emitChange();

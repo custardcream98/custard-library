@@ -29,6 +29,7 @@ export const addStoreSelectorNode = <T>({ key, selector }: { key: string; select
         callback();
       });
     },
+    isLoading: true,
     key,
     onChange(callback) {
       this._subscribers.add(callback);
@@ -38,6 +39,6 @@ export const addStoreSelectorNode = <T>({ key, selector }: { key: string; select
       };
     },
     selector,
-    value: null as T,
+    value: undefined as T, // will be set later
   };
 };
