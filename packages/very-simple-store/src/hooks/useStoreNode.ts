@@ -1,7 +1,7 @@
 import type { Store, StoreNode } from "../types";
 import { getNodeValue, getReducerValue } from "../utils/value";
 
-import { useStoreNodeAddSubscribe_INTERNAL_USE_ONLY } from "./useStoreNodeAddSubscibe";
+import { useStoreNodeAddSubscribe_INTERNAL_USE_ONLY } from "./useStoreNodeAddSubscribe";
 import { useStoreNodeInitialize_INTERNAL_USE_ONLY } from "./useStoreNodeInitialize";
 import { useStoreRef } from "./useStoreRef";
 
