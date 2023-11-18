@@ -2,6 +2,8 @@
 
 간단한 방법으로 구현한 React 전역 상태 관리 라이브러리입니다.
 
+언제 어디에서나 전역 상태와 selector를 선언하고 사용할 수 있고, 비동기 selector 기능도 제공합니다.
+
 ## 샘플 코드와 실행 예시
 
 [링크](https://custard-library-web.vercel.app/sample)
