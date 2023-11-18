@@ -1,5 +1,5 @@
-import type { Store, StoreNode } from "../types";
-import { getNodeValue, getReducerValue } from "../utils/value";
+import type { StoreNode } from "../types";
+import { getReducerValue } from "../utils/value";
 
 import { useStoreNodeAddSubscribe_INTERNAL_USE_ONLY } from "./useStoreNodeAddSubscribe";
 import { useStoreNodeInitialize_INTERNAL_USE_ONLY } from "./useStoreNodeInitialize";
@@ -16,24 +16,6 @@ export const useStoreNodeGetter = <T>(node: StoreNode<T>): T => {
   return (storeRef.current._nodes.get(node.key)?.value as T) ?? node.value;
 };
 
-const resolveSelectors = <T>(store: Store, updatedNode: StoreNode<T>) => {
-  store._selectors.forEach((selectorNode) => {
-    if (!selectorNode._dependencies.has(updatedNode.key)) {
-      return;
-    }
-
-    const resolvedValue = selectorNode.selector({
-      get: (node) => {
-        return getNodeValue(store, node);
-      },
-    });
-
-    selectorNode.value = resolvedValue;
-
-    selectorNode.emitChange();
-  });
-};
-
 export const useStoreNodeSetter = <T>(node: StoreNode<T>) => {
   const storeRef = useStoreRef();
   useStoreNodeInitialize_INTERNAL_USE_ONLY(node);
@@ -45,36 +27,26 @@ export const useStoreNodeSetter = <T>(node: StoreNode<T>) => {
       }
 
       const store = storeRef.current;
+      store._registerNode(node);
 
-      if (!store._nodes.has(node.key)) {
-        store._nodes.set(node.key, node);
+      const storeNode = store._getNode<T>(node.key);
+
+      if (!storeNode) {
+        throw new Error(`Node ${node.key} is not registered in store`);
       }
 
-      const isFirstUpdate = !store._nodes.has(node.key);
-      if (isFirstUpdate) {
-        const resolvedValue = getReducerValue(value, node.value);
-        const newNode = {
-          ...node,
-          value: resolvedValue,
-        };
-        store._nodes.set(node.key, newNode);
-      } else {
-        const prevNode = store._nodes.get(node.key) as StoreNode<T>;
-        const resolvedValue = getReducerValue(value, prevNode.value);
+      const resolvedValue = getReducerValue(value, storeNode.value);
 
-        if (prevNode.value !== resolvedValue) {
-          // update only if value is changed
-          const newNode = {
-            ...node,
-            value: resolvedValue,
-          };
-          store._nodes.set(node.key, newNode);
-          prevNode.emitChange();
-
-          resolveSelectors(store, newNode);
-          store.emitChange();
-        }
+      if (resolvedValue === storeNode.value) {
+        // update only if value is changed
+        return;
       }
+
+      storeNode.value = resolvedValue;
+      storeNode.emitChange();
+
+      store.emitSelectorChange(node.key);
+      store.emitChange();
     },
     [node, storeRef],
   );

@@ -44,7 +44,26 @@ const DEFAULT_STORE: Store = {
     this._selectors.delete(key);
   },
   emitChange() {
+    // emit change to all subscribers
     this._global_subscribers.forEach((callback) => callback());
+  },
+  emitSelectorChange(key) {
+    // emit change to all selector nodes
+    this._selectors.forEach((selectorNode) => {
+      if (!selectorNode._dependencies.has(key)) {
+        return;
+      }
+
+      const resolvedValue = selectorNode.selector({
+        get: (node) => {
+          return getNodeValue(this, node);
+        },
+      });
+
+      selectorNode.value = resolvedValue;
+
+      selectorNode.emitChange();
+    });
   },
   onChange(callback) {
     this._global_subscribers.add(callback);

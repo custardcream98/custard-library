@@ -4,19 +4,21 @@ export type SubscribeCallback = () => void;
 export type SubscribeCleanup = () => void;
 export type OnChangeHandler = (callback: SubscribeCallback) => SubscribeCleanup;
 
-export type EmitChangeHandler = () => void;
+export type ChangeEmitter = () => void;
+export type ChangeEmitterWithKey = (key: StoreNodeKey) => void;
 
 export type StoreNode<T> = {
   key: StoreNodeKey;
   value: T;
   _subscribers: Set<SubscribeCallback>;
   onChange: OnChangeHandler;
-  emitChange: EmitChangeHandler;
+  emitChange: ChangeEmitter;
 };
 
 export type Store = {
   onChange: OnChangeHandler;
-  emitChange: EmitChangeHandler;
+  emitChange: ChangeEmitter;
+  emitSelectorChange: ChangeEmitterWithKey;
   _registerNode: <T>(node: StoreNode<T>) => void;
   _registerSelectorNode: <T>(selectorNode: SelectorNode<T>) => void;
   _unregisterNode: (key: StoreNodeKey) => void;
@@ -40,5 +42,5 @@ export type SelectorNode<T> = {
   _dependencies: Set<StoreNodeKey>;
   _subscribers: Set<SubscribeCallback>;
   onChange: OnChangeHandler;
-  emitChange: EmitChangeHandler;
+  emitChange: ChangeEmitter;
 };
