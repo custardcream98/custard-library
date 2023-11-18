@@ -1,8 +1,21 @@
 # custard-library
 
-리액트 컴포넌트 라이브러리 포트폴리오를 위한 모노레포입니다.
+리액트 라이브러리 실험을 위한 모노레포입니다. 각종 아이디어, 구현해보고 싶은 것을 개발합니다.
 
-## 가장 최근 작업물 구경하기
+## Table of Contents
+
+* [라이브러리 목록](#라이브러리-목록)
+  + [전역 상태관리 라이브러리를 직접 만들어보자](#전역-상태관리-라이브러리를-직접-만들어보자)
+* [모노레포 설정](#모노레포-설정)
+  + [`packages`](#-packages-)
+  + [`apps`](#-apps-)
+  + [`rollup.config.mjs`](#-rollupconfigmjs-)
+  + [TypeScript](#typescript)
+    - [Troubleshooting: Storybook tsconfig array extends issue](#troubleshooting--storybook-tsconfig-array-extends-issue)
+
+## 라이브러리 목록
+
+### 전역 상태관리 라이브러리를 직접 만들어보자
 
 `@custardcream/very-simple-store`
 
