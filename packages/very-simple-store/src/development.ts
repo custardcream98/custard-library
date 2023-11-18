@@ -10,11 +10,9 @@ export const useCurrentStoreState_ONLY_FOR_DEVELOPMENT = () => {
   React.useLayoutEffect(() => {
     const store = storeRef.current;
 
-    store._global_subscribers.add(forceUpdate);
+    const cleanup = store.onChange(forceUpdate);
 
-    return () => {
-      store._global_subscribers.delete(forceUpdate);
-    };
+    return cleanup;
   }, [storeRef, forceUpdate]);
 
   const store = {
