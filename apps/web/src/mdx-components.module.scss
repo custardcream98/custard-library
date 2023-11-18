@@ -1,0 +1,10 @@
+@use "./app/layout-variable";
+
+.link {
+  color: layout-variable.$link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: layout-variable.$link-color-hover;
+  }
+}
