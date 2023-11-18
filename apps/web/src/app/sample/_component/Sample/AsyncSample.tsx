@@ -15,7 +15,7 @@ import { StoreViewer } from "./StoreViewer";
 
 export function AsyncSample() {
   return (
-    <StoreRoot key="async-sample">
+    <StoreRoot>
       <StoreViewer />
       <div className={style.wrapper}>
         <div className={style.title}>Sample (버튼을 눌러보세요)</div>
@@ -28,9 +28,9 @@ export function AsyncSample() {
   );
 }
 
-const testStoreNode = addStoreNode({
+const storeNode = addStoreNode({
   initialState: 0,
-  key: "testStoreNode",
+  key: "storeNode",
 });
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -38,7 +38,7 @@ const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const asyncSelectorNode = addStoreSelectorNode({
   key: "asyncSelectorNode",
   selector: async ({ get }) => {
-    const testState = get(testStoreNode);
+    const testState = get(storeNode);
 
     await wait(2000);
 
@@ -47,7 +47,7 @@ const asyncSelectorNode = addStoreSelectorNode({
 });
 
 const Children1 = () => {
-  const [value, setValue] = useStoreNode(testStoreNode);
+  const [value, setValue] = useStoreNode(storeNode);
   const ref = React.useRef<HTMLDivElement>(null);
   useRenderBlink(ref);
 
@@ -59,11 +59,11 @@ const Children1 = () => {
         padding: "10px",
       }}
     >
-      Children1
+      <div>Children1</div>
       <button type="button" className={style.sampleButton} onClick={() => setValue((prev) => prev + 1)}>
         Increment Button
       </button>
-      <div>testStoreNode: {value}</div>
+      <div>storeNode: {value}</div>
     </div>
   );
 };
