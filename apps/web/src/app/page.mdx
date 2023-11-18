@@ -4,6 +4,8 @@
 
 간단한 방법으로 구현한 React 전역 상태 관리 라이브러리입니다.
 
+언제 어디에서나 전역 상태와 selector를 선언하고 사용할 수 있고, 비동기 selector 기능도 제공합니다.
+
 ## 설치
 
 ```bash
@@ -45,7 +47,7 @@ export const storeNode = addStoreNode({
 import { useStoreNode } from "@custardcream/very-simple-store";
 import { storeNode } from "./storeNode";
 
-const TestComponent = () => {
+const Component = () => {
   const [value, setValue] = useStoreNode(storeNode);
 
   return (
@@ -81,11 +83,49 @@ export const storeSelectorNode = addStoreSelectorNode({
 import { useStoreSelectorNode } from "@custardcream/very-simple-store";
 import { storeSelectorNode } from "./storeSelectorNode";
 
-const TestComponent = () => {
-  const value = useStoreSelectorNode(storeSelectorNode);
+const Component = () => {
+  const { value } = useStoreSelectorNode(storeSelectorNode);
 
   return <p>{value}</p>;
 };
 ```
 
 `selectorNode` 또한 어디서 선언하는지는 중요하지 않습니다. 어디서든 해당 selector를 사용하고 싶다면 `useStoreSelectorNode` 훅으로 사용해주세요.
+
+### async `StoreSelectorNode` 사용하기
+
+`StoreSelectorNode`는 비동기적으로 계산될 수 있습니다. `addStoreSelectorNode`에 비동기 `selector`를 넣으면 됩니다.
+
+```ts
+import { addStoreSelectorNode } from "@custardcream/very-simple-store";
+import { storeNode } from "./storeNode";
+
+export const asyncStoreSelectorNode = addStoreSelectorNode({
+  key: "asyncStoreSelectorNode",
+  selector: async ({ get }) => {
+    const storeValue = get(storeNode);
+    const result = await fetchData();
+
+    return storeValue + result;
+  },
+});
+```
+
+이렇게 선언된 `asyncStoreSelectorNode`는 위와 동일하게 `useStoreSelectorNode` 훅을 통해 사용할 수 있습니다.
+
+```tsx
+import { useStoreSelectorNode } from "@custardcream/very-simple-store";
+import { asyncStoreSelectorNode } from "./asyncStoreSelectorNode";
+
+const Component = () => {
+  const { value, isLoading } = useStoreSelectorNode(asyncStoreSelectorNode);
+
+  if (isLoading) {
+    return <p>로딩 중...</p>;
+  }
+
+  return <p>{value}</p>;
+};
+```
+
+비동기 상태가 준비중인지 여부는 `isLoading`으로 확인할 수 있습니다.

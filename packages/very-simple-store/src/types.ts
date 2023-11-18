@@ -20,7 +20,7 @@ export type Store = {
   emitChange: ChangeEmitter;
   emitSelectorChange: ChangeEmitterWithKey;
   _registerNode: <T>(node: StoreNode<T>) => void;
-  _registerSelectorNode: <T>(selectorNode: SelectorNode<T>) => void;
+  _registerSelectorNode: <T>(selectorNode: SelectorNode<T>, onReady: () => void) => Promise<void>;
   _unregisterNode: (key: StoreNodeKey) => void;
   _unregisterSelectorNode: (key: StoreNodeKey) => void;
   _getNode: <T>(key: StoreNodeKey) => StoreNode<T> | undefined;
@@ -33,12 +33,13 @@ export type StoreRef = {
   current: Store;
 };
 
-export type SelectorGetter<T = any> = (node: StoreNode<T>) => T;
-export type Selector<T> = ({ get }: { get: <U>(node: StoreNode<U>) => U }) => T;
+export type SelectorGetter<T> = (node: StoreNode<T>) => T;
+export type Selector<T> = ({ get }: { get: <U>(node: StoreNode<U>) => U }) => T | Promise<T>;
 export type SelectorNode<T> = {
   key: StoreNodeKey;
   selector: Selector<T>;
   value: T;
+  isLoading: boolean;
   _dependencies: Set<StoreNodeKey>;
   _subscribers: Set<SubscribeCallback>;
   onChange: OnChangeHandler;

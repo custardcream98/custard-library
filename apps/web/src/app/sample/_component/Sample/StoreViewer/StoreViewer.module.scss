@@ -13,17 +13,8 @@ $wrapper-background-color: rgb(142, 142, 142);
   }
 }
 
-.sampleWrapper {
-  padding: 1rem;
-  background-color: #fff;
+.prettyPrintJsonWrapper {
+  min-height: 360px;
+  background-color: rgb(34, 39, 46);
   border-radius: 0.75rem;
-}
-
-.sampleButton {
-  display: inline-block;
-  margin: 0.5rem 0;
-  background-color: #fff;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid #a9a9a9;
 }

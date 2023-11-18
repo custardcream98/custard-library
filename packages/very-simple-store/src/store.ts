@@ -13,16 +13,17 @@ export const createStore = (): Store => ({
   _registerNode(node) {
     if (!this._nodes.has(node.key)) {
       this._nodes.set(node.key, node);
+      this.emitChange();
     }
   },
-  _registerSelectorNode(selectorNode) {
+  async _registerSelectorNode(selectorNode, onReady) {
     if (this._selectors.has(selectorNode.key)) {
       return;
     }
     const dependencies = new Set<StoreNodeKey>();
     this._selectors.set(selectorNode.key, selectorNode);
 
-    selectorNode.value = selectorNode.selector({
+    const initialValue = selectorNode.selector({
       get: (node) => {
         dependencies.add(node.key);
 
@@ -30,9 +31,26 @@ export const createStore = (): Store => ({
       },
     });
 
+    if (initialValue instanceof Promise) {
+      const value = await initialValue;
+
+      selectorNode.value = value;
+      selectorNode._dependencies = dependencies;
+      selectorNode.isLoading = false;
+
+      this._selectors.set(selectorNode.key, selectorNode);
+
+      this.emitChange();
+      onReady();
+      return;
+    }
+
+    selectorNode.value = initialValue;
     selectorNode._dependencies = dependencies;
+    selectorNode.isLoading = false;
 
     this._selectors.set(selectorNode.key, selectorNode);
+    onReady();
   },
   _selectors: new Map(),
   _unregisterNode(key) {
@@ -57,6 +75,22 @@ export const createStore = (): Store => ({
           return getNodeValue(this, node);
         },
       });
+
+      if (resolvedValue instanceof Promise) {
+        selectorNode.isLoading = true;
+        selectorNode.emitChange();
+        this.emitChange();
+
+        resolvedValue.then((value) => {
+          selectorNode.value = value;
+          selectorNode.isLoading = false;
+
+          selectorNode.emitChange();
+          this.emitChange();
+        });
+
+        return;
+      }
 
       selectorNode.value = resolvedValue;
 
