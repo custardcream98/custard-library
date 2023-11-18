@@ -1,7 +1,7 @@
 import { getNodeValue } from "./utils/value";
 import type { Store, StoreNodeKey } from "./types";
 
-export const DEFAULT_STORE: Store = {
+export const createStore = (): Store => ({
   _getNode(key) {
     return this._nodes.get(key);
   },
@@ -67,4 +67,4 @@ export const DEFAULT_STORE: Store = {
     this._global_subscribers.add(callback);
     return () => this._global_subscribers.delete(callback);
   },
-};
+});
