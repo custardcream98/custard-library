@@ -1,10 +1,10 @@
-import { Sample } from "./_component";
+import { Sample, AsyncSample } from "./_component";
 
 ## @custardcream/very-simple-store
 
 [레포지토리 링크](https://github.com/custardcream98/custard-library/tree/main/packages/very-simple-store)
 
-### 샘플 코드
+### 샘플 코드 (동기 데이터)
 
 ```tsx
 import {
@@ -16,7 +16,7 @@ import {
   useStoreSelectorNode,
 } from "@custardcream/very-simple-store";
 
-export function Test() {
+export function Sample() {
   return (
     <StoreRoot>
       <Children1 />
@@ -93,7 +93,7 @@ const Children4 = () => {
 };
 
 const SelectorDisplay = () => {
-  const sum = useStoreSelectorNode(sumSelectorNode);
+  const { value: sum } = useStoreSelectorNode(sumSelectorNode);
 
   return <div>selectorValue: {sum}</div>;
 };
@@ -106,3 +106,75 @@ const SelectorDisplay = () => {
 렌더링 확인을 위해 렌더된 컴포넌트에는 <span style={{ color: "orange" }} >주황색 outline</span> 깜빡임이 추가됩니다.
 
 <Sample />
+
+### 샘플 코드 (비동기 데이터)
+
+```tsx
+import {
+  addStoreNode,
+  addStoreSelectorNode,
+  StoreRoot,
+  useStoreNode,
+  useStoreSelectorNode,
+} from "@custardcream/very-simple-store";
+import React from "react";
+
+export function AsyncSample() {
+  return (
+    <StoreRoot>
+      <Children1 />
+      <Children2 />
+    </StoreRoot>
+  );
+}
+
+const storeNode = addStoreNode({
+  initialState: 0,
+  key: "storeNode",
+});
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const asyncSelectorNode = addStoreSelectorNode({
+  key: "asyncSelectorNode",
+  selector: async ({ get }) => {
+    const testState = get(storeNode);
+
+    await wait(2000);
+
+    return testState + 1;
+  },
+});
+
+const Children1 = () => {
+  const [value, setValue] = useStoreNode(storeNode);
+
+  const handleClick = () => setValue((prev) => prev + 1);
+
+  return (
+    <div>
+      Children1
+      <button onClick={handleClick}>Increment Button</button>
+      <div>storeNode: {value}</div>
+    </div>
+  );
+};
+
+const Children2 = () => {
+  const { value, isLoading } = useStoreSelectorNode(asyncSelectorNode);
+
+  return (
+    <div>
+      Children2
+      <div>isLoading: {JSON.stringify(isLoading)}</div>
+      <div>asyncSelectorNode: {value}</div>
+    </div>
+  );
+};
+```
+
+### 실행결과
+
+버튼을 누르면 `storeNode`가 동기적으로 갱신되고 2초 후 `asyncSelectorNode`가 비동기적으로 갱신됩니다.
+
+<AsyncSample />
