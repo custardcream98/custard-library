@@ -45,11 +45,11 @@ function StoreViewer() {
   const normalizedStore = React.useMemo(() => {
     return {
       selectors: Object.entries(store.selectors).reduce<Record<any, any>>((acc, [key, value]) => {
-        acc[key] = plainObjectFilter(["dependencies", "subscribers"], value);
+        acc[key] = plainObjectFilter(["_dependencies", "_subscribers"], value);
         return acc;
       }, {}),
       state: Object.entries(store.state).reduce<Record<any, any>>((acc, [key, value]) => {
-        acc[key] = plainObjectFilter(["dependencies", "subscribers"], value);
+        acc[key] = plainObjectFilter(["_dependencies", "_subscribers"], value);
         return acc;
       }, {}),
     };
