@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "shiwoo.park <custardcream@kakao.com>",
   "private": true,
   "scripts": {
