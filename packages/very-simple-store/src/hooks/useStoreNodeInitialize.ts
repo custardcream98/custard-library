@@ -10,8 +10,6 @@ export const useStoreNodeInitialize_INTERNAL_USE_ONLY = <T>(node: StoreNode<T>) 
   React.useLayoutEffect(() => {
     const store = storeRef.current;
 
-    if (!store._nodes.has(node.key)) {
-      store._nodes.set(node.key, node);
-    }
+    store._registerNode(node);
   }, [node, storeRef]);
 };

@@ -18,7 +18,7 @@ export const useStoreNodeGetter = <T>(node: StoreNode<T>): T => {
 
 const resolveSelectors = <T>(store: Store, updatedNode: StoreNode<T>) => {
   store._selectors.forEach((selectorNode) => {
-    if (!selectorNode.dependencies.has(updatedNode.key)) {
+    if (!selectorNode._dependencies.has(updatedNode.key)) {
       return;
     }
 
@@ -30,12 +30,8 @@ const resolveSelectors = <T>(store: Store, updatedNode: StoreNode<T>) => {
 
     selectorNode.value = resolvedValue;
 
-    selectorNode.subscribers.forEach((callback) => callback());
+    selectorNode.emitChange();
   });
-};
-
-const resolveGlobalSubscribers = (store: Store) => {
-  store._global_subscribers.forEach((callback) => callback());
 };
 
 export const useStoreNodeSetter = <T>(node: StoreNode<T>) => {
@@ -73,10 +69,10 @@ export const useStoreNodeSetter = <T>(node: StoreNode<T>) => {
             value: resolvedValue,
           };
           store._nodes.set(node.key, newNode);
-          prevNode.subscribers.forEach((callback) => callback());
+          prevNode.emitChange();
 
           resolveSelectors(store, newNode);
-          resolveGlobalSubscribers(store);
+          store.emitChange();
         }
       }
     },

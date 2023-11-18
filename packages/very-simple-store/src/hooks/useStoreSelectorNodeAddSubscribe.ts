@@ -11,11 +11,14 @@ export const useStoreSelectorNodeAddSubscribe_INTERNAL_USE_ONLY = <T>(selectorNo
 
   React.useLayoutEffect(() => {
     const store = storeRef.current;
+    const storeNode = store._getNode(selectorNode.key);
 
-    store._selectors.get(selectorNode.key)?.subscribers.add(forceUpdate);
+    if (!storeNode) {
+      return;
+    }
 
-    return () => {
-      store._selectors.get(selectorNode.key)?.subscribers.delete(forceUpdate);
-    };
+    const cleanup = storeNode.onChange(forceUpdate);
+
+    return cleanup;
   }, [forceUpdate, selectorNode, storeRef]);
 };

@@ -7,12 +7,13 @@ export const getReducerValue = <T>(value: T | ((prev: T) => T), prevValue: T): T
 };
 
 export const getNodeValue = <T>(store: Store, node: StoreNode<T>): T => {
-  const existingNode = store._nodes.get(node.key);
+  const storeNode = store._getNode(node.key);
 
-  if (existingNode) {
-    return existingNode.value as T;
+  if (storeNode) {
+    return storeNode.value as T;
   }
 
-  store._nodes.set(node.key, node);
+  store._registerNode(node);
+
   return node.value;
 };
