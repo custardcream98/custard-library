@@ -5,7 +5,7 @@ import { useStoreRef } from "./useStoreRef";
 
 import React from "react";
 
-export const useStoreSelectorNodeAddSubscibe_INTERNAL_USE_ONLY = <T>(selectorNode: SelectorNode<T>) => {
+export const useStoreSelectorNodeAddSubscribe_INTERNAL_USE_ONLY = <T>(selectorNode: SelectorNode<T>) => {
   const storeRef = useStoreRef();
   const forceUpdate = useForceUpdate();
 
