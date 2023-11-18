@@ -138,7 +138,7 @@ const Children4 = () => {
 };
 
 const SelectorDisplay = () => {
-  const sum = useStoreSelectorNode(sumSelectorNode);
+  const { value: sum } = useStoreSelectorNode(sumSelectorNode);
   const ref = React.useRef<HTMLDivElement>(null);
   useRenderBlink(ref);
 

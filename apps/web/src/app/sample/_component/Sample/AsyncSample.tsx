@@ -69,7 +69,7 @@ const Children1 = () => {
 };
 
 const Children2 = () => {
-  const value = useStoreSelectorNode(asyncSelectorNode);
+  const { value, isLoading } = useStoreSelectorNode(asyncSelectorNode);
   const ref = React.useRef<HTMLDivElement>(null);
   useRenderBlink(ref);
 
@@ -82,6 +82,13 @@ const Children2 = () => {
       }}
     >
       Children2
+      <div
+        style={{
+          marginTop: "10px",
+        }}
+      >
+        isLoading: {JSON.stringify(isLoading)}
+      </div>
       <div
         style={{
           marginTop: "10px",
