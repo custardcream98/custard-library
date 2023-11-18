@@ -1,17 +1,18 @@
+import style from "./layout.module.scss";
+
+import "../style/global.scss";
+import { Description, Footer, Header } from "./_component";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body>
-        <header>
-          <h1>Custard Library</h1>
-        </header>
-        <main>
-          <section>
-            <h2>설명</h2>
-            <p>가장 최근 실험중인 라이브러리를 소개합니다.</p>
-          </section>
-          {children}
+      <body className={style.body}>
+        <Header />
+        <main className={style.main}>
+          <Description className={style.description} />
+          <div className="mdx">{children}</div>
         </main>
+        <Footer />
       </body>
     </html>
   );

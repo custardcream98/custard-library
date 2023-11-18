@@ -29,7 +29,7 @@ const getRollupConfig = (packageFolderName) => {
         {
           dir: path.resolve(packagePath, main, "../"),
           format: "cjs",
-          sourcemap: true,
+          sourcemap: !isDevelopment,
           preserveModules: true,
           preserveModulesRoot: path.resolve(packagePath, "src"),
           exports: "named",
@@ -37,7 +37,7 @@ const getRollupConfig = (packageFolderName) => {
         {
           dir: path.resolve(packagePath, module, "../"),
           format: "esm",
-          sourcemap: true,
+          sourcemap: !isDevelopment,
           preserveModules: true,
           preserveModulesRoot: path.resolve(packagePath, "src"),
           exports: "named",

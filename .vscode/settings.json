@@ -4,6 +4,7 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.preferences.importModuleSpecifier": "project-relative"
 }

@@ -1,0 +1,108 @@
+import { Sample } from "./_component";
+
+## @custardcream/very-simple-store
+
+매우 간단한 형태의 리액트 전역상태관리 라이브러리입니다.
+
+### 샘플 코드
+
+```tsx
+import {
+  addStoreNode,
+  addStoreSelectorNode,
+  StoreRoot,
+  useStoreNode,
+  useStoreNodeGetter,
+  useStoreSelectorNode,
+} from "@custardcream/very-simple-store";
+
+export function Test() {
+  return (
+    <StoreRoot>
+      <Children1 />
+      <Children3 />
+      <Children4 />
+      <SelectorDisplay />
+    </StoreRoot>
+  );
+}
+
+const testCounter1Node = addStoreNode({
+  initialState: 0,
+  key: "testCounter1",
+});
+
+const testCounter2Node = addStoreNode({
+  initialState: 10,
+  key: "testCounter2",
+});
+
+const sumSelectorNode = addStoreSelectorNode({
+  key: "testCounterSum",
+  selector: ({ get }) => {
+    const testCounter = get(testCounter1Node);
+    const testCounter2 = get(testCounter2Node);
+    return testCounter + testCounter2;
+  },
+});
+
+const Children1 = () => (
+  <div>
+    Children1
+    <Children2 />
+  </div>
+);
+
+const Children2 = () => {
+  const value = useStoreNodeGetter(testCounter1Node);
+
+  return (
+    <div>
+      Children2
+      <div>testCounter1: {value}</div>
+    </div>
+  );
+};
+
+const Children3 = () => {
+  const [value, setValue] = useStoreNode(testCounter1Node);
+
+  const handleClick = () => setValue((prev) => prev + 1);
+
+  return (
+    <div>
+      <div>Children3</div>
+      <button onClick={handleClick}>Increment Button</button>
+      <div>testCounter1: {value}</div>
+    </div>
+  );
+};
+
+const Children4 = () => {
+  const [value, setValue] = useStoreNode(testCounter2Node);
+
+  const handleClick = () => setValue((prev) => prev + 1);
+
+  return (
+    <div>
+      <div>Children4</div>
+      <button onClick={handleClick}>Increment Button</button>
+      <div>testCounter2: {value}</div>
+    </div>
+  );
+};
+
+const SelectorDisplay = () => {
+  const sum = useStoreSelectorNode(sumSelectorNode);
+
+  return <div>selectorValue: {sum}</div>;
+};
+```
+
+### 실행결과
+
+버튼을 클릭하면 위의 숫자가 증가합니다.
+
+렌더링 확인을 위해 렌더된 컴포넌트에는 <span style={{ color: "orange" }} >주황색 outline</span> 깜빡임이 추가됩니다.
+
+<Sample />

@@ -5,17 +5,20 @@ import { useStoreRef } from "./useStoreRef";
 
 import React from "react";
 
-export const useStoreSelectorNodeAddSubscibe_INTERNAL_USE_ONLY = <T>(selectorNode: SelectorNode<T>) => {
+export const useStoreSelectorNodeAddSubscribe_INTERNAL_USE_ONLY = <T>(selectorNode: SelectorNode<T>) => {
   const storeRef = useStoreRef();
   const forceUpdate = useForceUpdate();
 
   React.useLayoutEffect(() => {
     const store = storeRef.current;
+    const storeSelectorNode = store._getSelectorNode(selectorNode.key);
 
-    store._selectors.get(selectorNode.key)?.subscribers.add(forceUpdate);
+    if (!storeSelectorNode) {
+      return;
+    }
 
-    return () => {
-      store._selectors.get(selectorNode.key)?.subscribers.delete(forceUpdate);
-    };
+    const cleanup = storeSelectorNode.onChange(forceUpdate);
+
+    return cleanup;
   }, [forceUpdate, selectorNode, storeRef]);
 };

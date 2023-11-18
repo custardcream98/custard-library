@@ -1,0 +1,35 @@
+$wrapper-background-color: rgb(142, 142, 142);
+.wrapper {
+  background-color: $wrapper-background-color;
+  border-radius: 0.75rem;
+  overflow: hidden;
+
+  padding: 0.1rem;
+  margin-bottom: 2rem;
+
+  .title {
+    padding: 0.5rem 0.5rem;
+    color: rgb(255, 255, 255);
+  }
+}
+
+.sampleWrapper {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0.75rem;
+}
+
+.sampleButton {
+  display: inline-block;
+  margin: 0.5rem 0;
+  background-color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #a9a9a9;
+}
+
+.prettyPrintJsonWrapper {
+  min-height: 360px;
+  background-color: rgb(34, 39, 46);
+  border-radius: 0.75rem;
+}
