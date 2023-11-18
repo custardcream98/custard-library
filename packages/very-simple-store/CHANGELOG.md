@@ -1,5 +1,11 @@
 # @custardcream/very-simple-store
 
+## 1.1.0
+
+### Minor Changes
+
+- ce1cecf: Async Selector 기능 추가
+
 ## 1.0.0
 
 ### Major Changes
