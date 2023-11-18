@@ -4,7 +4,7 @@ import { useStoreRef } from "./useStoreRef";
 import { useStoreSelectorNodeAddSubscribe_INTERNAL_USE_ONLY } from "./useStoreSelectorNodeAddSubscribe";
 import { useStoreSelectorNodeInitialize_INTERNAL_USE_ONLY } from "./useStoreSelectorNodeInitialize";
 
-export const useStoreSelectorNode = <T>(selectorNode: SelectorNode<T>): T | undefined => {
+export const useStoreSelectorNode = <T>(selectorNode: SelectorNode<T>) => {
   const storeRef = useStoreRef();
 
   useStoreSelectorNodeInitialize_INTERNAL_USE_ONLY(selectorNode);
@@ -13,6 +13,8 @@ export const useStoreSelectorNode = <T>(selectorNode: SelectorNode<T>): T | unde
   const currentNode = storeRef.current._getSelectorNode<T>(selectorNode.key);
 
   if (currentNode) {
-    return currentNode.value;
+    return { isLoading: currentNode.isLoading, value: currentNode.value };
   }
+
+  return { isLoading: true, value: undefined };
 };
