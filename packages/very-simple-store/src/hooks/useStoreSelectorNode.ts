@@ -13,8 +13,12 @@ export const useStoreSelectorNode = <T>(selectorNode: SelectorNode<T>) => {
   const currentNode = storeRef.current._getSelectorNode<T>(selectorNode.key);
 
   if (currentNode) {
-    return { isLoading: currentNode.isLoading, value: currentNode.value };
+    return {
+      currentlyLoadingCount: currentNode.currentlyLoadingCount,
+      isLoading: currentNode.isLoading,
+      value: currentNode.value,
+    };
   }
 
-  return { isLoading: true, value: undefined };
+  return { currentlyLoadingCount: 0, isLoading: true, value: undefined };
 };

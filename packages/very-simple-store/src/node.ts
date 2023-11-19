@@ -24,6 +24,7 @@ export const addStoreSelectorNode = <T>({ key, selector }: { key: string; select
   return {
     _dependencies: new Set(),
     _subscribers: new Set(),
+    currentlyLoadingCount: 0,
     emitChange() {
       this._subscribers.forEach((callback) => {
         callback();

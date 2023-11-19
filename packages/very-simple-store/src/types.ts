@@ -39,6 +39,7 @@ export type SelectorNode<T> = {
   key: StoreNodeKey;
   selector: Selector<T>;
   value: T;
+  currentlyLoadingCount: number;
   isLoading: boolean;
   _dependencies: Set<StoreNodeKey>;
   _subscribers: Set<SubscribeCallback>;

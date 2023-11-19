@@ -78,12 +78,15 @@ export const createStore = (): Store => ({
 
       if (resolvedValue instanceof Promise) {
         selectorNode.isLoading = true;
+        selectorNode.currentlyLoadingCount += 1;
+
         selectorNode.emitChange();
         this.emitChange();
 
         resolvedValue.then((value) => {
           selectorNode.value = value;
-          selectorNode.isLoading = false;
+          selectorNode.currentlyLoadingCount -= 1;
+          selectorNode.isLoading = selectorNode.currentlyLoadingCount !== 0;
 
           selectorNode.emitChange();
           this.emitChange();
@@ -93,6 +96,7 @@ export const createStore = (): Store => ({
       }
 
       selectorNode.value = resolvedValue;
+      selectorNode.isLoading = false;
 
       selectorNode.emitChange();
     });
