@@ -1,5 +1,12 @@
 # web
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [8967ae6]
+  - @custardcream/very-simple-store@1.2.0
+
 ## 0.1.2
 
 ### Patch Changes

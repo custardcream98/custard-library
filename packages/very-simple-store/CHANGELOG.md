@@ -1,5 +1,11 @@
 # @custardcream/very-simple-store
 
+## 1.2.0
+
+### Minor Changes
+
+- 8967ae6: Async selector 버그 이슈 대응
+
 ## 1.1.0
 
 ### Minor Changes
