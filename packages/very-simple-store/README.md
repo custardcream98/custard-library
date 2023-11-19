@@ -120,7 +120,7 @@ import { useStoreSelectorNode } from "@custardcream/very-simple-store";
 import { asyncStoreSelectorNode } from "./asyncStoreSelectorNode";
 
 const Component = () => {
-  const { value, isLoading } = useStoreSelectorNode(asyncStoreSelectorNode);
+  const { value, isLoading, currentlyLoadingCount } = useStoreSelectorNode(asyncStoreSelectorNode);
 
   if (isLoading) {
     return <p>로딩 중...</p>;
@@ -131,3 +131,5 @@ const Component = () => {
 ```
 
 비동기 상태가 준비중인지 여부는 `isLoading`으로 확인할 수 있습니다.
+
+또한, 해당 selector 함수가 현재 비동기적으로 몇 개 호출되고 있는지도 `currentlyLoadingCount`로 알 수 있습니다.
