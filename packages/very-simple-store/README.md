@@ -6,7 +6,7 @@
 
 ## 샘플 코드와 실행 예시
 
-[링크](https://custard-library-web.vercel.app/sample)
+[링크](https://library.shiwoo.dev/sample)
 
 ## 설치
 
