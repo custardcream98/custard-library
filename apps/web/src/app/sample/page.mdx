@@ -161,11 +161,12 @@ const Children1 = () => {
 };
 
 const Children2 = () => {
-  const { value, isLoading } = useStoreSelectorNode(asyncSelectorNode);
+  const { value, isLoading, currentlyLoadingCount } = useStoreSelectorNode(asyncSelectorNode);
 
   return (
     <div>
       Children2
+      <div>currentlyLoadingCount: {currentlyLoadingCount}</div>
       <div>isLoading: {JSON.stringify(isLoading)}</div>
       <div>asyncSelectorNode: {value}</div>
     </div>
