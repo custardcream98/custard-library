@@ -3,6 +3,8 @@ import style from "./layout.module.scss";
 import "../style/global.scss";
 import { Description, Footer, Header } from "./_component";
 
+export { metadata } from "./metadata";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
