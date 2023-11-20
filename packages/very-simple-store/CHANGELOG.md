@@ -1,5 +1,11 @@
 # @custardcream/very-simple-store
 
+## 1.3.0
+
+### Minor Changes
+
+- 2f4e41a: StoreNodeKey가 더 다양한 타입을 받도록 개선
+
 ## 1.2.0
 
 ### Minor Changes
