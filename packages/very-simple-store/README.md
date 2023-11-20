@@ -8,6 +8,10 @@
 
 [링크](https://library.shiwoo.dev/sample)
 
+## 자세한 구현 히스토리 (블로그 글)
+
+[링크](https://shiwoo.dev/posts/global-state-management)
+
 ## 설치
 
 ```bash
