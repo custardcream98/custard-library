@@ -1,4 +1,4 @@
-export type StoreNodeKey = string;
+export type StoreNodeKey = string | number | symbol;
 
 export type SubscribeCallback = () => void;
 export type SubscribeCleanup = () => void;

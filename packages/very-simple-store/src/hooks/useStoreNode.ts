@@ -32,7 +32,7 @@ export const useStoreNodeSetter = <T>(node: StoreNode<T>) => {
       const storeNode = store.getNode<T>(node.key);
 
       if (!storeNode) {
-        throw new Error(`Node ${node.key} is not registered in store`);
+        throw new Error(`Node ${JSON.stringify(node.key)} is not registered in store`);
       }
 
       const resolvedValue = getReducerValue(value, storeNode.value);
