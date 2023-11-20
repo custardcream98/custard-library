@@ -27,9 +27,9 @@ export const useStoreNodeSetter = <T>(node: StoreNode<T>) => {
       }
 
       const store = storeRef.current;
-      store._registerNode(node);
+      store.registerNode(node);
 
-      const storeNode = store._getNode<T>(node.key);
+      const storeNode = store.getNode<T>(node.key);
 
       if (!storeNode) {
         throw new Error(`Node ${node.key} is not registered in store`);

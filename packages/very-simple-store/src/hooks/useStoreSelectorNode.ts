@@ -10,7 +10,7 @@ export const useStoreSelectorNode = <T>(selectorNode: SelectorNode<T>) => {
   useStoreSelectorNodeInitialize_INTERNAL_USE_ONLY(selectorNode);
   useStoreSelectorNodeAddSubscribe_INTERNAL_USE_ONLY(selectorNode);
 
-  const currentNode = storeRef.current._getSelectorNode<T>(selectorNode.key);
+  const currentNode = storeRef.current.getSelectorNode<T>(selectorNode.key);
 
   if (currentNode) {
     return {

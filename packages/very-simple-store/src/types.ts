@@ -19,16 +19,15 @@ export type Store = {
   onChange: OnChangeHandler;
   emitChange: ChangeEmitter;
   emitSelectorChange: ChangeEmitterWithKey;
-  _registerNode: <T>(node: StoreNode<T>) => void;
-  _registerSelectorNode: <T>(selectorNode: SelectorNode<T>, onReady: () => void) => Promise<void>;
-  _unregisterNode: (key: StoreNodeKey) => void;
-  _unregisterSelectorNode: (key: StoreNodeKey) => void;
-  _getNode: <T>(key: StoreNodeKey) => StoreNode<T> | undefined;
-  _getSelectorNode: <T>(key: StoreNodeKey) => SelectorNode<T> | undefined;
+  registerNode: <T>(node: StoreNode<T>) => void;
+  registerSelectorNode: <T>(selectorNode: SelectorNode<T>, onReady: () => void) => Promise<void>;
+  getNode: <T>(key: StoreNodeKey) => StoreNode<T> | undefined;
+  getSelectorNode: <T>(key: StoreNodeKey) => SelectorNode<T> | undefined;
   _global_subscribers: Set<SubscribeCallback>;
   _nodes: Map<StoreNodeKey, StoreNode<any>>;
   _selectors: Map<StoreNodeKey, SelectorNode<any>>;
 };
+export type InternalStore = Pick<Store, "_nodes" | "_selectors" | "_global_subscribers">;
 export type StoreRef = {
   current: Store;
 };

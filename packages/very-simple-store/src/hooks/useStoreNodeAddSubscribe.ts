@@ -11,7 +11,7 @@ export const useStoreNodeAddSubscribe_INTERNAL_USE_ONLY = <T>(node: StoreNode<T>
 
   React.useLayoutEffect(() => {
     const store = storeRef.current;
-    const storeNode = store._getNode(node.key);
+    const storeNode = store.getNode(node.key);
 
     if (!storeNode) {
       return;

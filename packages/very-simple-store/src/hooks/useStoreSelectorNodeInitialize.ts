@@ -18,6 +18,6 @@ export const useStoreSelectorNodeInitialize_INTERNAL_USE_ONLY = <T>(selectorNode
 
     const store = storeRef.current;
 
-    store._registerSelectorNode(selectorNode, forceUpdate);
+    store.registerSelectorNode(selectorNode, forceUpdate);
   }, [forceUpdate, selectorNode, storeRef]);
 };

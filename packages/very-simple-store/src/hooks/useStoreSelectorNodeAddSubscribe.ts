@@ -11,7 +11,7 @@ export const useStoreSelectorNodeAddSubscribe_INTERNAL_USE_ONLY = <T>(selectorNo
 
   React.useLayoutEffect(() => {
     const store = storeRef.current;
-    const storeSelectorNode = store._getSelectorNode(selectorNode.key);
+    const storeSelectorNode = store.getSelectorNode(selectorNode.key);
 
     if (!storeSelectorNode) {
       return;
