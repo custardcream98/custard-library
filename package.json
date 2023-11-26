@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "NODE_ENV=development concurrently \"pnpm build:watch\" \"pnpm --filter web dev\"",
     "build": "rm -rf packages/*/dist && rollup -c --bundleConfigAsCjs",
+    "build:vscode-bootstrap:watch": "pnpm --filter vscode-bootstrap run watch",
     "build:watch": "pnpm build --watch",
     "publish:react-gantt": "pnpm run build && pnpm --filter react-gantt publish --report-summary --access public",
     "publish:very-simple-store": "pnpm run build && pnpm --filter very-simple-store publish --report-summary --access public",

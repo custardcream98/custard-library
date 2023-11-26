@@ -1,0 +1,31 @@
+{
+  "name": "vscode-bootstrap",
+  "displayName": "vscode-bootstrap",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/index.js",
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.84.0",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "@vscode/test-electron": "^2.3.6",
+    "eslint-config-custom": "workspace:*"
+  }
+}
