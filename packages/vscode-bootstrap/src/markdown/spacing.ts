@@ -1,6 +1,6 @@
-import { LEVEL_WEIGHT, SPACER } from "./constants/level";
-import { DIRECTION_TOKEN_TO_PROPERTY_MAP, SPACING_TOKEN_TO_PROPERTY_MAP } from "./constants/property";
-import type { Direction, DirectionToken, Level, SpacingToken } from "./type";
+import { LEVEL_WEIGHT, SPACER } from "../constants/level";
+import { DIRECTION_TOKEN_TO_PROPERTY_MAP, SPACING_TOKEN_TO_PROPERTY_MAP } from "../constants/property";
+import type { Direction, DirectionToken, Level, SpacingToken } from "../type";
 
 import { MarkdownString } from "vscode";
 
