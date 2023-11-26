@@ -33,7 +33,7 @@
 
 VSCode에서 Bootstrap 4를 사용할 때 IntelliSense를 제공해주는 VSCode Extension입니다.
 
-현업 프로젝트에서 Bootstrap을 사용하고 있는데 IntelliSense를 제공해주는 Extension이 없어서 조금씩 개발하고 있습니다.
+현업 프로젝트에서 Bootstrap을 커스텀해 사용하고 있는데 커스텀한 Stylesheet에 대해 IntelliSense를 제공해주는 Extension이 없어서 조금씩 개발하고 있습니다.
 
 ## 모노레포 설정
 
