@@ -1,6 +1,6 @@
 {
-  "name": "vscode-bootstrap",
-  "displayName": "vscode-bootstrap",
+  "name": "@custardcream/vscode-bootstrap-intellisense",
+  "displayName": "vscode-bootstrap-intellisense",
   "description": "",
   "version": "0.0.1",
   "engines": {

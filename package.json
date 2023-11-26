@@ -9,9 +9,9 @@
   "scripts": {
     "dev": "NODE_ENV=development concurrently \"pnpm build:watch\" \"pnpm --filter web dev\"",
     "build": "rm -rf packages/*/dist && rollup -c --bundleConfigAsCjs",
+    "build:watch": "pnpm build --watch",
     "build:vscode": "rm -rf packages/vscode-*/dist && rollup --config rollup.vscode.config.mjs --bundleConfigAsCjs",
     "build:vscode:watch": "pnpm build:vscode --watch",
-    "build:watch": "pnpm build --watch",
     "publish:react-gantt": "pnpm run build && pnpm --filter react-gantt publish --report-summary --access public",
     "publish:very-simple-store": "pnpm run build && pnpm --filter very-simple-store publish --report-summary --access public",
     "storybook": "NODE_ENV=development concurrently \"pnpm build:watch\" \"pnpm --filter ./apps/storybook storybook\"",
@@ -36,6 +36,7 @@
     "@types/node": "20.5.8",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
+    "@vscode/vsce": "^2.22.0",
     "autoprefixer": "^10.4.15",
     "concurrently": "^8.2.1",
     "eslint": "^8.48.0",

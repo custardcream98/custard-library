@@ -2,11 +2,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run vscode-bootstrap Extension",
+      "name": "Run vscode-bootstrap-intellisense Extension",
       "type": "extensionHost",
       "request": "launch",
-      "args": ["--extensionDevelopmentPath=${workspaceFolder}/packages/vscode-bootstrap"],
-      "outFiles": ["${workspaceFolder}/packages/vscode-bootstrap/dist/**/*.js"],
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}/packages/vscode-bootstrap-intellisense"],
+      "outFiles": ["${workspaceFolder}/packages/vscode-bootstrap-intellisense/dist/**/*.js"],
       "preLaunchTask": "npm: build:vscode:watch"
     }
   ]
