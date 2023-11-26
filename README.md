@@ -40,6 +40,8 @@
 
 ### `rollup.config.mjs`
 
+ESM을 사용하고자 `.mjs` 확장자를 사용하고, `--bundleConfigAsCjs` 옵션을 썼습니다. TypeScript로 작성도 가능했으나, 좀 더 간편한 설정을 위해 JavaScript로 했습니다.
+
 - 사용한 플러그인
   - `@rollup/plugin-node-resolve`: external module resolver입니다.
   - `@rollup/plugin-terser`: minify를 위한 terser입니다.
@@ -47,6 +49,10 @@
   - `rollup-plugin-dts`: TS declare file 생성을 위한 플러그인입니다. 코드 빌드 후 따로 빌드합니다.
   - `@rollup/plugin-babel`: JSX 트랜스파일을 위해 사용한 babel 플러그인입니다. `@babel/preset-react`를 사용하며, `@babel/plugin-transform-runtime`으로 필요한 polyfill만 사용토록 했습니다. ([레퍼런스](https://poiemaweb.com/babel-polyfill))
   - `rollup-plugin-styles`: css, scss module 사용을 위해 추가한 플러그인입니다. 커스텀 style inject 함수를 정의해 사용했습니다. ([customStyleInjector](./css-injector.js))
+
+#### `rollup.vscode.config.mjs`
+
+오직 CJS로만 빌드되는 VSCode Extension 프로젝트를 위한 별도 설정입니다.
 
 ### TypeScript
 

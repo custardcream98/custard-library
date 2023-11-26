@@ -1,0 +1,41 @@
+{
+  "name": "vscode-bootstrap-intellisense",
+  "displayName": "vscode-bootstrap-intellisense",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "bugs": {
+    "url": "https://github.com/custardcream98/custard-library/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/custardcream98/custard-library.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/index.js",
+  "scripts": {
+    "lint": "eslint src --ext ts",
+    "build:vsce": "vsce package --no-dependencies"
+  },
+  "peerDependencies": {
+    "vscode": "^1.1.37"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.84.0",
+    "@vscode/test-electron": "^2.3.6",
+    "@vscode/vsce": "^2.22.0",
+    "eslint-config-custom": "workspace:*",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "vscode": "^1.1.37"
+  }
+}

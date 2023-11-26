@@ -81,7 +81,9 @@ const getRollupConfig = (packageFolderName) => {
   ];
 };
 
-const packages = fs.readdirSync(PACKAGE_ROOT_PATH).filter((name) => !name.includes("eslint"));
+const packages = fs
+  .readdirSync(PACKAGE_ROOT_PATH)
+  .filter((name) => !name.includes("eslint") && !name.includes("vscode"));
 const rollupConfigs = packages.map((packageFolderName) => getRollupConfig(packageFolderName)).flat();
 
 export default rollupConfigs;
