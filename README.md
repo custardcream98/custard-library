@@ -25,6 +25,16 @@
 
 간단한 방법으로 구현한 전역 상태관리 라이브러리입니다.
 
+### VSCode Bootstrap IntelliSense
+
+`vscode-bootstrap-intellisense`
+
+[프로젝트 바로가기](https://github.com/custardcream98/custard-library/tree/main/packages/vscode-bootstrap-intellisense)
+
+VSCode에서 Bootstrap 4를 사용할 때 IntelliSense를 제공해주는 VSCode Extension입니다.
+
+현업 프로젝트에서 Bootstrap을 사용하고 있는데 IntelliSense를 제공해주는 Extension이 없어서 조금씩 개발하고 있습니다.
+
 ## 모노레포 설정
 
 `pnpm workspace`를 사용해 환경을 구성했습니다. 모노레포 구조, 설정하는 과정에서 알게 된 사실들을 정리하겠습니다.
