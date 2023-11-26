@@ -5,9 +5,9 @@
       "name": "Run vscode-bootstrap Extension",
       "type": "extensionHost",
       "request": "launch",
-      "args": ["--extensionDevelopmentPath=./packages/vscode-bootstrap"],
-      "outFiles": ["./packages/vscode-bootstrap/dist/**/*.js"],
-      "preLaunchTask": "pnpm run build:vscode-bootstrap:watch"
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}/packages/vscode-bootstrap"],
+      "outFiles": ["${workspaceFolder}/packages/vscode-bootstrap/dist/**/*.js"],
+      "preLaunchTask": "npm: build:vscode:watch"
     }
   ]
 }

@@ -16,16 +16,20 @@
   "scripts": {
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "watch": "pnpm run compile --watch",
     "lint": "eslint src --ext ts"
   },
+  "peerDependencies": {
+    "vscode": "^1.1.37"
+  },
   "devDependencies": {
-    "@types/vscode": "^1.84.0",
     "@types/mocha": "^10.0.3",
     "@types/node": "18.x",
+    "@types/vscode": "^1.84.0",
+    "@vscode/test-electron": "^2.3.6",
+    "eslint-config-custom": "workspace:*",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
-    "@vscode/test-electron": "^2.3.6",
-    "eslint-config-custom": "workspace:*"
+    "vscode": "^1.1.37"
   }
 }

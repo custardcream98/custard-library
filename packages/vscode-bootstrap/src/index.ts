@@ -1,13 +1,13 @@
 import { registerSpacingCompletion } from "./completion";
 
-import * as vscode from "vscode";
+import { type ExtensionContext, window } from "vscode";
 
-export function activate(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage('"vscode-bootstrap" is now active!');
+export function activate(context: ExtensionContext) {
+  window.showInformationMessage('"vscode-bootstrap" is now active!');
 
   registerSpacingCompletion(context);
 }
 
 export function deactivate() {
-  vscode.window.showInformationMessage('"vscode-bootstrap" deactivated!');
+  window.showInformationMessage('"vscode-bootstrap" deactivated!');
 }
