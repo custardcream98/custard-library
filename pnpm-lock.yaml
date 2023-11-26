@@ -53,9 +53,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^6.5.0
         version: 6.5.0(eslint@8.48.0)(typescript@5.2.2)
-      '@vscode/vsce':
-        specifier: ^2.22.0
-        version: 2.22.0
       autoprefixer:
         specifier: ^10.4.15
         version: 10.4.15(postcss@8.4.31)
@@ -424,6 +421,9 @@ importers:
       '@vscode/test-electron':
         specifier: ^2.3.6
         version: 2.3.6
+      '@vscode/vsce':
+        specifier: ^2.22.0
+        version: 2.22.0
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
