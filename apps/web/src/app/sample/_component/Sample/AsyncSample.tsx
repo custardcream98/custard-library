@@ -1,5 +1,10 @@
 "use client";
 
+import { StoreViewer } from "./StoreViewer";
+import { useRenderBlink } from "./useRenderBlink";
+
+import style from "./Sample.module.scss";
+
 import {
   addStoreNode,
   addStoreSelectorNode,
@@ -8,10 +13,6 @@ import {
   useStoreSelectorNode,
 } from "@custardcream/very-simple-store";
 import React from "react";
-import { useRenderBlink } from "./useRenderBlink";
-
-import style from "./Sample.module.scss";
-import { StoreViewer } from "./StoreViewer";
 
 export function AsyncSample() {
   return (

@@ -1,7 +1,7 @@
-import style from "./layout.module.scss";
+import { Description, Footer, Header } from "./_component";
 
 import "../style/global.scss";
-import { Description, Footer, Header } from "./_component";
+import style from "./layout.module.scss";
 
 export { metadata } from "./metadata";
 

@@ -1,5 +1,6 @@
-import Link from "next/link";
 import style from "./Header.module.scss";
+
+import Link from "next/link";
 
 export const Header = () => (
   <header className={style.header}>

@@ -1,4 +1,5 @@
 import { PropsWithClassName } from "../../../type";
+
 import style from "./Description.module.scss";
 
 export const Description = ({ className }: PropsWithClassName) => (

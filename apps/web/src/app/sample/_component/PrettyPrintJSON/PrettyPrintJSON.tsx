@@ -1,8 +1,8 @@
+import "./hljs.scss";
+import style from "./PrettyPrintJSON.module.scss";
+
 import highlightJs from "highlight.js";
 import highlightJsJson from "highlight.js/lib/languages/json";
-
-import style from "./PrettyPrintJSON.module.scss";
-import "./hljs.scss";
 
 highlightJs.registerLanguage("json", highlightJsJson);
 

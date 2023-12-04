@@ -1,8 +1,9 @@
-import { useCurrentStoreState_ONLY_FOR_DEVELOPMENT } from "@custardcream/very-simple-store";
-import React from "react";
+import { PrettyPrintJSON } from "../../PrettyPrintJSON";
 
 import style from "./StoreViewer.module.scss";
-import { PrettyPrintJSON } from "../../PrettyPrintJSON";
+
+import { useCurrentStoreState_ONLY_FOR_DEVELOPMENT } from "@custardcream/very-simple-store";
+import React from "react";
 
 const plainObjectFilter = (filters: string[], object: Record<any, any>) =>
   Object.entries(object).reduce<Record<any, any>>((acc, [key, value]) => {
