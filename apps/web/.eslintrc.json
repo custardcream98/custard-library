@@ -1,4 +1,21 @@
 {
-  "extends": ["next", "next/core-web-vitals", "custom"],
-  "root": true
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "custom"
+  ],
+  "root": true,
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "parserOptions": {
+        "project": [
+          "./tsconfig.json"
+        ]
+      }
+    }
+  ]
 }

@@ -20,15 +20,9 @@ const config = {
       },
       plugins: ["@typescript-eslint"],
       rules: {
-        "@typescript-eslint/ban-types": [
-          "error",
-          {
-            extendDefaults: true,
-            types: {
-              "{}": false,
-            },
-          },
-        ],
+        "@typescript-eslint/no-empty-object-type": "off",
+        "@typescript-eslint/no-unsafe-function-type": "error",
+        "@typescript-eslint/no-wrapper-object-types": "error",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-unused-vars": [
           "error",
